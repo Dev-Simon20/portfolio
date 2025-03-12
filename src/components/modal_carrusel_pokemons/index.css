@@ -1,0 +1,19 @@
+#pokemon_weight::after{
+  content: "";
+  width: 0.5px;
+  background-color: gray;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+#pokemon_height::after{
+ content: "";
+  width: 0.5px;
+  background-color: gray;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
