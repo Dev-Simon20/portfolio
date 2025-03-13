@@ -1,3 +1,6 @@
+"use client";
+import { NavigationMenuDemo } from "../navigation_projects/navigation_projects";
+
 const HeaderMain = () => {
   return (
     <header className="font-poppins w-full sticky top-0 md:top-4 z-50 flex flex-col items-center  ">
@@ -5,21 +8,14 @@ const HeaderMain = () => {
         <section className="font-medium text-3xl md:text-4xl text-blue-600 cursor-pointer">
           S|D
         </section>
-        <section className="hidden md:flex gap-2 md:gap-8 text-sm md:text-normal ">
-          <ol>
-            <a href="/" className="hover:text-blue-600">
-              Start
-            </a>
-          </ol>
+        <section className="hidden md:flex gap-2 md:gap-8 text-sm md:text-normal items-center">
           <ol>
             <a href="/about-me" className="hover:text-blue-600">
               About Me
             </a>
           </ol>
           <ol>
-            <a href="/proyects" className="hover:text-blue-600">
-              Projects
-            </a>
+            <NavigationMenuDemo/>
           </ol>
         </section>
         <section className="hidden md:flex">
