@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Portafolio de Jemapierk Simon
 
-## Getting Started
+Bienvenido a mi portafolio, un espacio donde muestro mis proyectos y habilidades como Ingeniero de Sistemas especializado en Desarrollo Web. Este proyecto está desarrollado con **Next.js**, **TypeScript**, **Tailwind CSS** y utiliza **NextAuth** para la autenticación en proyectos específicos.
 
-First, run the development server:
+## 📂 Estructura del Proyecto
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```plaintext
+portfolio-g/
+│── public/                     # Archivos estáticos
+│── src/
+│   ├── app/
+│   │   ├── layout.tsx          # Layout general del portafolio
+│   │   ├── page.tsx            # Página principal
+│   │   ├── proyectos/          # Sección de proyectos
+│   │   │   ├── page.tsx        # Listado de proyectos
+│   │   │   ├── colegio/        # Proyecto Colegio
+│   │   │   │   ├── layout.tsx
+│   │   │   │   ├── page.tsx
+│   │   │   │   ├── dashboard/
+│   │   │   │   ├── auth/       # Autenticación Colegio (NextAuth)
+│   │   │   │   ├── api/        # API del Colegio
+│   │   │   │   ├── services/   # Servicios Colegio
+│   │   │   │   ├── prisma/     # Base de datos Colegio
+│   │   │   ├── universidad/    # Proyecto Universidad
+│   │   │   │   ├── layout.tsx
+│   │   │   │   ├── page.tsx
+│   │   │   │   ├── dashboard/
+│   │   │   │   ├── auth/       # Autenticación Universidad (NextAuth)
+│   │   │   │   ├── api/        # API Universidad
+│   │   │   │   ├── services/   # Servicios Universidad
+│   │   │   │   ├── prisma/     # Base de datos Universidad
+│   ├── components/             # 🔥 Componentes reutilizables
+│   ├── libs/                   # Librerías y utilidades
+│   ├── services/               # Servicios globales
+│── .env                        # Variables de entorno
+│── next.config.mjs             # Configuración de Next.js
+│── tsconfig.json               # Configuración de TypeScript
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Tecnologías Utilizadas
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Frontend**: Next.js, React, TypeScript, Tailwind CSS
+- **Backend**: API Routes en Next.js
+- **Autenticación**: NextAuth.js
+- **Base de Datos**: Prisma ORM con PostgreSQL
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🌍 Proyectos dentro del Portafolio
 
-## Learn More
+### 🎓 **Colegio**
+Un sistema de gestión para colegios, donde los administradores pueden gestionar estudiantes, cursos y profesores.
 
-To learn more about Next.js, take a look at the following resources:
+### 🏛️ **Universidad**
+Una plataforma para la administración universitaria, con funcionalidades específicas como inscripción de alumnos, gestión de horarios y evaluaciones.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚀 Instalación y Ejecución
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/tu-usuario/portfolio-g.git
+   ```
+2. Instalar dependencias:
+   ```bash
+   cd portfolio-g
+   npm install
+   ```
+3. Configurar variables de entorno (`.env`):
+   ```plaintext
+   DATABASE_URL_COLEGIO=postgres://...
+   DATABASE_URL_UNIVERSIDAD=postgres://...
+   NEXTAUTH_SECRET=tu_secreto
+   ```
+4. Ejecutar el proyecto:
+   ```bash
+   npm run dev
+   ```
 
-## Deploy on Vercel
+## 📌 Mejoras Futuras
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **📸 Capturas de pantalla** – Agregar imágenes o gifs de la UI en acción.
+- **🛠 Configuración avanzada** – Explicar cómo cambiar configuraciones como personalizar el tema o modificar endpoints.
+- **🚀 Despliegue** – Documentar cómo desplegar el proyecto en Vercel, Netlify o un VPS.
+- **✅ Pruebas** – Incluir detalles sobre testing con Jest, Cypress, etc.
+- **📊 Métricas y Analíticas** – Explicar cómo integrar Google Analytics o herramientas de monitoreo.
+- **🎨 Diseño y UX** – Enlazar mockups o prototipos si los hay.
+- **📌 Roadmap** – Lista de mejoras o características futuras.
+- **👥 Contribuciones** – Guía para colaboradores si el proyecto es open source.
+- **📄 Licencia** – Definir los derechos de uso del código.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📌 Notas Finales
+Este portafolio no solo es una muestra de mis habilidades, sino una plataforma modular donde cada proyecto tiene su propia arquitectura independiente. 🚀
+
+¡Gracias por visitar mi portafolio! Si tienes alguna pregunta o sugerencia, no dudes en contactarme. 😊
+
