@@ -18,7 +18,7 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} ${abril.variable} ${dm_sans.variable} relative bg-zinc-900 text-white`}
       >
-        <HeaderMain/>
+        {/* <HeaderMain/> */}
         {children}
       </body>
     </html>

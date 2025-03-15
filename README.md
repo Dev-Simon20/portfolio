@@ -1,4 +1,4 @@
-# 🚀 Portafolio de Jemapierk Simon
+# 🚀 Portafolio de Jeampierk Simon
 
 Bienvenido a mi portafolio, un espacio donde muestro mis proyectos y habilidades como Ingeniero de Sistemas especializado en Desarrollo Web. Este proyecto está desarrollado con **Next.js**, **TypeScript**, **Tailwind CSS** y utiliza **NextAuth** para la autenticación en proyectos específicos.
 
@@ -6,35 +6,86 @@ Bienvenido a mi portafolio, un espacio donde muestro mis proyectos y habilidades
 
 ```plaintext
 portfolio-g/
-│── public/                     # Archivos estáticos
+│── public/                     
 │── src/
 │   ├── app/
-│   │   ├── layout.tsx          # Layout general del portafolio
-│   │   ├── page.tsx            # Página principal
-│   │   ├── proyectos/          # Sección de proyectos
-│   │   │   ├── page.tsx        # Listado de proyectos
-│   │   │   ├── colegio/        # Proyecto Colegio
+│   │   ├── layout.tsx               # Layout general del portafolio
+│   │   ├── page.tsx                 # Página principal
+│   │   ├── global.css               # Estilos generales del proyecto
+│   │   ├── favicon.ico              # Icono de la web 
+│   │   ├── projects/               # Ruta para proyectos
+│   │   │   ├── page.tsx             # Página de listado de proyectos
+│   │   │   ├── pokedex/             # 🔥 Proyecto Pokedex
+│   │   │   │   ├── layout.tsx
+│   │   │   │   ├── page.tsx7
+│   │   │   ├── my-little-shop/             # 🔥 Proyecto Colegio
 │   │   │   │   ├── layout.tsx
 │   │   │   │   ├── page.tsx
 │   │   │   │   ├── dashboard/
-│   │   │   │   ├── auth/       # Autenticación Colegio (NextAuth)
-│   │   │   │   ├── api/        # API del Colegio
-│   │   │   │   ├── services/   # Servicios Colegio
-│   │   │   │   ├── prisma/     # Base de datos Colegio
-│   │   │   ├── universidad/    # Proyecto Universidad
+│   │   │   │   ├── (auth)/            # 🔥 Autenticación del colegio (NextAuth)
+│   │   │   │   │   ├── layout.tsx
+│   │   │   │   │   ├── login.tsx
+│   │   │   │   │   ├── register.tsx
+│   │   │   │   │   ├── reset-password.tsx
+│   │   │   │   ├── api/             # 🔥 API de la tienda
+│   │   │   │   │   ├── route.ts
+│   │   │   │   ├── services/        # 🔥 Servicios de la tienda
+│   │   │   │   ├── prisma/          # 🔥 Base de datos de la tienda
+│   │   │   │   │   ├── schema.prisma
+│   │   │   │   │   ├── migrations/
+│   │   │   │   ├── components/      # 📌 Componentes específicos del Colegio
+│   │   │   │   │   ├── DashboardCard.tsx
+│   │   │   │   │   ├── StudentTable.tsx
+│   │   │   │   │   ├── FormRegistro.tsx
+│   │   │   ├── colegio/             # 🔥 Proyecto Colegio
 │   │   │   │   ├── layout.tsx
 │   │   │   │   ├── page.tsx
 │   │   │   │   ├── dashboard/
-│   │   │   │   ├── auth/       # Autenticación Universidad (NextAuth)
-│   │   │   │   ├── api/        # API Universidad
-│   │   │   │   ├── services/   # Servicios Universidad
-│   │   │   │   ├── prisma/     # Base de datos Universidad
-│   ├── components/             # 🔥 Componentes reutilizables
-│   ├── libs/                   # Librerías y utilidades
-│   ├── services/               # Servicios globales
-│── .env                        # Variables de entorno
-│── next.config.mjs             # Configuración de Next.js
-│── tsconfig.json               # Configuración de TypeScript
+│   │   │   │   ├── auth/            # 🔥 Autenticación del colegio (NextAuth)
+│   │   │   │   │   ├── login.tsx
+│   │   │   │   │   ├── register.tsx
+│   │   │   │   │   ├── reset-password.tsx
+│   │   │   │   ├── api/             # 🔥 API del colegio
+│   │   │   │   │   ├── route.ts
+│   │   │   │   ├── services/        # 🔥 Servicios del colegio
+│   │   │   │   ├── prisma/          # 🔥 Base de datos del colegio
+│   │   │   │   │   ├── schema.prisma
+│   │   │   │   │   ├── migrations/
+│   │   │   │   ├── components/      # 📌 Componentes específicos del Colegio
+│   │   │   │   │   ├── DashboardCard.tsx
+│   │   │   │   │   ├── StudentTable.tsx
+│   │   │   │   │   ├── FormRegistro.tsx
+│   │   │   ├── universidad/         # 🔥 Proyecto Universidad
+│   │   │   │   ├── layout.tsx
+│   │   │   │   ├── page.tsx
+│   │   │   │   ├── dashboard/
+│   │   │   │   ├── auth/            # 🔥 Autenticación de la universidad (NextAuth)
+│   │   │   │   │   ├── login.tsx
+│   │   │   │   │   ├── register.tsx
+│   │   │   │   │   ├── reset-password.tsx
+│   │   │   │   ├── api/             # 🔥 API de la universidad
+│   │   │   │   │   ├── route.ts
+│   │   │   │   ├── services/        # 🔥 Servicios de la universidad
+│   │   │   │   ├── prisma/          # 🔥 Base de datos de la universidad
+│   │   │   │   │   ├── schema.prisma
+│   │   │   │   │   ├── migrations/
+│   │   │   │   ├── components/      # 📌 Componentes específicos de la Universidad
+│   │   │   │   │   ├── CourseCard.tsx
+│   │   │   │   │   ├── ProfesorTable.tsx
+│   │   │   │   │   ├── FormInscripcion.tsx
+│   ├── components/                  # 📌 Componentes globales reutilizables
+│   │   ├── Button.tsx
+│   │   ├── Modal.tsx
+│   │   ├── Sidebar.tsx
+│   │   ├── ui/                       # 📌 Componentes globales reutilizables de SHADCN
+│   ├── libs/          
+│   │   ├── auth.ts                   # Configuración global de autenticación
+│   ├── services/
+│   │   ├── db.ts                      # Conexión a la base de datos (por proyecto)
+│── middleware.ts                       # Middleware para protección de rutas
+│── .env                                # Variables de entorno (una por cada proyecto)
+│── next.config.js
+│── tsconfig.json
 ```
 
 ## 🛠️ Tecnologías Utilizadas
@@ -45,6 +96,9 @@ portfolio-g/
 - **Base de Datos**: Prisma ORM con PostgreSQL
 
 ## 🌍 Proyectos dentro del Portafolio
+
+### 🔍 **Pokédex**
+Una web que utiliza una API para mostrar los Pokémon. Permite filtrarlos por tipo y, al hacer clic en uno, se despliega información detallada sobre el Pokémon seleccionado.
 
 ### 🎓 **Colegio**
 Un sistema de gestión para colegios, donde los administradores pueden gestionar estudiantes, cursos y profesores.
@@ -65,6 +119,7 @@ Una plataforma para la administración universitaria, con funcionalidades espec�
    ```
 3. Configurar variables de entorno (`.env`):
    ```plaintext
+   NEXT_PUBLIC_POKE_API_URL=https://pokeapi.co
    DATABASE_URL_COLEGIO=postgres://...
    DATABASE_URL_UNIVERSIDAD=postgres://...
    NEXTAUTH_SECRET=tu_secreto
