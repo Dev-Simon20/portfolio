@@ -32,10 +32,8 @@ export default function PokePage() {
 
         pokes.push(data.data);
       } catch (error) {
-        console.error(error);
       }
     }
-    console.log(pokes[0]);
     setPokemons(pokes);
     setPokemonsBackup(pokes);
   };
@@ -45,7 +43,6 @@ export default function PokePage() {
 
   useEffect(() => {
     if (pokemosBackUp) {
-      console.log("holaaa");
 
       let pok: Pokemon[] = [...pokemosBackUp];
       if (typePokemon === "all") {

@@ -16,8 +16,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { loginActionLittleShop } from "../../actions/auth-actions";
+import { useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 
 const Formlogin = () => {
+   const router = useRouter();
+   const [error, setError] = useState<string | null>(null);
+   const [isPending, startTransition] = useTransition();
    const form = useForm<z.infer<typeof logInSchema>>({
       resolver: zodResolver(logInSchema),
       defaultValues: {
@@ -27,16 +32,23 @@ const Formlogin = () => {
    });
 
    async function onSubmit(values: z.infer<typeof logInSchema>) {
-      // Do something with the form values.
-      // ✅ This will be type-safe and validated.
-      console.log('valores desde la funcion on submit',values);
-      await loginActionLittleShop(values);
+      startTransition(async () => {
+         let errorTemp:(string|null)=null;
+         const response = await loginActionLittleShop(values);
+         if (response.error) {
+            errorTemp=response.error;
+         } else {
+            router.push("/projects/my-little-shop/dashboard");
+         }
+         setError(errorTemp)
+      });
+
    }
 
    return (
       <div className=" min-w-80 rounded-md outline outline-1 outline-gray-100 shadow-md p-4">
          <h1>Login</h1>
-         <Form {...form} >
+         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                <FormField
                   control={form.control}
@@ -61,10 +73,7 @@ const Formlogin = () => {
                      <FormItem>
                         <FormLabel>Password</FormLabel>
                         <FormControl>
-                           <Input
-                              placeholder="AX*44c&"
-                              {...field}
-                           />
+                           <Input placeholder="AX*44c&" {...field} />
                         </FormControl>
                         <FormMessage />
                      </FormItem>
@@ -96,7 +105,14 @@ const Formlogin = () => {
                      </FormItem>
                   )}
                /> */}
-               <Button type="submit">Submit</Button>
+               {
+                  error&&<FormMessage>
+                     {error}
+                  </FormMessage>
+               }
+               <Button type="submit" disabled={isPending}>
+                  Submit
+               </Button>
             </form>
          </Form>
       </div>
