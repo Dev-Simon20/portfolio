@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { loginActionLittleShop } from "../../actions/auth-actions";
 
 const Formlogin = () => {
    const form = useForm<z.infer<typeof logInSchema>>({
@@ -25,16 +26,17 @@ const Formlogin = () => {
       },
    });
 
-   function onSubmit(values: z.infer<typeof logInSchema>) {
+   async function onSubmit(values: z.infer<typeof logInSchema>) {
       // Do something with the form values.
       // ✅ This will be type-safe and validated.
-      console.log(values);
+      console.log('valores desde la funcion on submit',values);
+      await loginActionLittleShop(values);
    }
 
    return (
-      <div className=" min-w-64">
+      <div className=" min-w-80 rounded-md outline outline-1 outline-gray-100 shadow-md p-4">
          <h1>Login</h1>
-         <Form {...form}>
+         <Form {...form} >
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                <FormField
                   control={form.control}
