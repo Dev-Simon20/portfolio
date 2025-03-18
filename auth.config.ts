@@ -1,8 +1,8 @@
-import { shopDB } from "@/app/projects/my-little-shop/lib/shop-db";
 import { logInSchema } from "@/lib/zod";
 import type { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
+import { prismaShop } from "@/app/projects/my-little-shop/lib/shop-db";
 // Notice this is only an object, not a full Auth.js instance
 export default {
    providers: [
@@ -14,7 +14,7 @@ export default {
             }
 
             //verificar si el usuario existe
-            const user = await shopDB.user.findUnique({
+            const user = await prismaShop.user.findUnique({
                where: {
                   email: data.email,
                },
@@ -28,7 +28,11 @@ export default {
                throw new Error("Incorrect oassword");
             }
 
-            return user;
+            return {
+               email:user.email,
+               id:user.id,
+               name:user.name
+            };
          },
       }),
    ],

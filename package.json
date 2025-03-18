@@ -11,8 +11,8 @@
       "generate": "npx prisma generate --schema ./prisma-little-shop/schema.prisma --no-engine && npx prisma generate --schema ./prisma-school-database/schema.prisma --no-engine",
       "migrate": "npx prisma migrate dev --schema ./prisma-little-shop/schema.prisma && npx prisma migrate dev --schema ./prisma-school-database/schema.prisma",
       "deploy": "npx prisma migrate deploy --schema ./prisma-little-shop/schema.prisma && npx prisma migrate deploy --schema ./prisma-school-database/schema.prisma",
-      "studio": "npx prisma studio --schema ./prisma-little-shop/schema.prisma --port 5556 ",
-      "studix": "npx prisma studio --schema ./prisma-school-database/schema.prisma --port 5555"
+      "studio": "npx prisma studio --schema ./prisma/shop/schema.prisma --port 5556 ",
+      "studix": "npx prisma studio --schema ./prisma/schemaSchool.prisma --port 5555"
    },
    "dependencies": {
       "@auth/prisma-adapter": "^2.8.0",
@@ -21,7 +21,6 @@
       "@hookform/resolvers": "^4.1.3",
       "@mui/material": "^6.4.7",
       "@prisma/client": "^6.5.0",
-      "@prisma/extension-accelerate": "^1.2.2",
       "@radix-ui/react-dropdown-menu": "^2.1.6",
       "@radix-ui/react-label": "^2.1.2",
       "@radix-ui/react-menubar": "^1.1.6",

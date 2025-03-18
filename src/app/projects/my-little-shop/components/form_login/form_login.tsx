@@ -33,14 +33,14 @@ const Formlogin = () => {
 
    async function onSubmit(values: z.infer<typeof logInSchema>) {
       startTransition(async () => {
-         let errorTemp:(string|null)=null;
+         let errorTemp: string | null = null;
          const response = await loginActionLittleShop(values);
          if (response.error) {
-            errorTemp=response.error;
+            errorTemp = response.error;
          } else {
             router.push("/projects/my-little-shop/dashboard");
          }
-         setError(errorTemp)
+         setError(errorTemp);
       });
 
    }
@@ -105,11 +105,7 @@ const Formlogin = () => {
                      </FormItem>
                   )}
                /> */}
-               {
-                  error&&<FormMessage>
-                     {error}
-                  </FormMessage>
-               }
+               {error && <FormMessage>{error}</FormMessage>}
                <Button type="submit" disabled={isPending}>
                   Submit
                </Button>

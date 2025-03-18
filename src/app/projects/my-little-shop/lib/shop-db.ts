@@ -1,7 +1,7 @@
-import { PrismaClient } from "@/prisma-little-shop/generated/client";
+import { PrismaClient as PrismaClientShop} from "@/prisma/generated/clientShop";
 
-const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
+const globalForPrisma = globalThis as unknown as { prismaShop: PrismaClientShop };
 
-export const shopDB = globalForPrisma.prisma || new PrismaClient();
+export const prismaShop = globalForPrisma.prismaShop || new PrismaClientShop();
 
-if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = shopDB;
+if (process.env.NODE_ENV !== "production") globalForPrisma.prismaShop = prismaShop;

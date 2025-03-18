@@ -21,7 +21,7 @@ export const RegisterSchema = object({
       name: string({ required_error: "Name is required" })
       .min(1, "Name is required")
       .max(32,"Name must be less than 32 characters"),
-      date_of_birth:date({required_error:"Ingrese la fecha de nacimiento"})
+      birthdate:date({required_error:"Ingrese la fecha de nacimiento"})
       .min(new Date("1900-01-01"), { message: "Too old" })
       .max(new Date("2021-01-01"), { message: "Too young!" })
   })
