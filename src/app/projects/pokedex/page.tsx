@@ -77,14 +77,14 @@ export default function PokePage() {
         ))}
       </article>
       {pokemons && (
-        <article className="w-full grid grid-cols-1  sm:grid-cols-3  w-full max-w-[1000px] gap-4 my-8 px-2 md:px-0">
+        <article className="w-full grid grid-cols-1  sm:grid-cols-3   max-w-[1000px] gap-4 my-8 px-2 md:px-0">
           {pokemons.map((p, i) => (
             <PokeCard pokemon={p} key={p.id} handleOpen={handleOpen} idx={i} />
           ))}
         </article>
       )}
       {!pokemons && (
-        <article className="w-full grid grid-cols-1  sm:grid-cols-3 -3 w-full max-w-[1000px] gap-4  my-8  px-2 md:px-0">
+        <article className="w-full grid grid-cols-1  sm:grid-cols-3     max-w-[1000px] gap-4  my-8  px-2 md:px-0">
           {sk.map((s, i: number) => (
             <Skeleton className="w-full min-h-40 " variant="rounded" key={i} />
           ))}

@@ -20,31 +20,34 @@ import {
    SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
+const urlCustom=(text:string):string=>{
+   return `/projects/my-little-shop/dashboard${text}`
+}
 // Menu items.
 const items = [
    {
       title: "Home",
-      url: "#",
+      url: urlCustom("/"),
       icon: Home,
    },
    {
       title: "Sales",
-      url: "#",
+      url: urlCustom("/sales"),
       icon: BadgeDollarSign,
    },
    {
       title: "Products",
-      url: "#",
+      url: urlCustom("/products"),
       icon: PackageSearch,
    },
    {
       title: "Finance",
-      url: "#",
+      url: urlCustom("/finance"),
       icon: ChartNoAxesCombined,
    },
    {
       title: "Settings",
-      url: "#",
+      url: urlCustom("/settings"),
       icon: Settings,
    },
 ];
@@ -54,14 +57,18 @@ export function SidebarShop() {
       <Sidebar collapsible="icon">
          <SidebarContent>
             <SidebarGroup>
-               <SidebarGroupLabel>Application</SidebarGroupLabel>
+               <SidebarGroupLabel className="text-lg">
+                  Application
+               </SidebarGroupLabel>
                <SidebarGroupContent>
                   <SidebarMenu>
                      {items.map((item) => (
                         <SidebarMenuItem key={item.title}>
                            <SidebarMenuButton asChild>
                               <a href={item.url}>
-                                 <item.icon style={{width:'18px',height:'18px'}}/>
+                                 <item.icon
+                                    style={{ width: "18px", height: "18px" }}
+                                 />
                                  <span className="font-dm_sans text-md font-medium">
                                     {item.title}
                                  </span>
