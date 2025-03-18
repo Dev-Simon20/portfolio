@@ -7,7 +7,7 @@ export default function MyLyttleShopLayout({
 }>) {
   return (
       <main
-        className={`w-full min-h-screen relative flex flex-col items-center justify-start bg-white text-gray-700 font-`}
+        className={`w-full min-h-screen relative bg-white text-gray-700 `}
       >
         {children}
       </main>
