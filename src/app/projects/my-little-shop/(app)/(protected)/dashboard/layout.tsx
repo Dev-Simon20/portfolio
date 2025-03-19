@@ -12,7 +12,7 @@ export default function MyLyttleShopDashboardLayout({
    return (
       <SidebarProvider>
          <SidebarShop />
-         <main className="w-full">
+         <main className="w-full bg-white m-3 ml-0 rounded-sm ">
             <HeaderDashboard />
             {children}
          </main>

@@ -1,0 +1,72 @@
+"use client";
+
+import { useState } from "react";
+import { ChevronDown, LogOut, User } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import {
+   DropdownMenu,
+   DropdownMenuContent,
+   DropdownMenuItem,
+   DropdownMenuSeparator,
+   DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
+export default function UserDropdown({ name }: { name: string }) {
+   const router = useRouter();
+   const [isOpen, setIsOpen] = useState(false);
+   const userName = name.split(" ")[0];
+   const handleOut = async () => {
+      await signOut({
+         redirect: true,
+         redirectTo: "/projects/my-little-shop/login",
+      });
+   };
+   const handleRedirect = () => {
+      router.push("/projects/my-little-shop/dashboard/my-profile");
+   };
+   return (
+      <div className="flex justify-end p-2 shadow-sm rounded-sm">
+         <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+            <DropdownMenuTrigger asChild>
+               <Button
+                  variant="ghost"
+                  className="flex items-center gap-2 px-3 py-2 hover:bg-muted/50"
+               >
+                  <Avatar className="h-8 w-8">
+                     {/* <AvatarImage src="/placeholder.svg" alt={userName} /> */}
+                     <AvatarFallback className="bg-primary/10 text-primary">
+                        {userName.charAt(0)}
+                     </AvatarFallback>
+                  </Avatar>
+                  <span className="text-sm font-medium">{userName}</span>
+                  <ChevronDown
+                     className={`h-4 w-4 transition-transform ${
+                        isOpen ? "rotate-180" : ""
+                     }`}
+                  />
+               </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-56">
+               <DropdownMenuItem
+                  className="cursor-pointer flex items-center gap-2 py-2"
+                  onClick={() => handleRedirect()}
+               >
+                  <User className="h-4 w-4" />
+                  <span>Mi perfil</span>
+               </DropdownMenuItem>
+               <DropdownMenuSeparator />
+               <DropdownMenuItem
+                  className="cursor-pointer flex items-center gap-2 py-2 text-destructive"
+                  onClick={() => handleOut()}
+               >
+                  <LogOut className="h-4 w-4" />
+                  <span>Cerrar Sesión</span>
+               </DropdownMenuItem>
+            </DropdownMenuContent>
+         </DropdownMenu>
+      </div>
+   );
+}

@@ -7,6 +7,8 @@ import {
    BadgeDollarSign,
    PackageSearch,
    ChartNoAxesCombined,
+   GalleryVerticalEnd,
+   ChevronsUpDown,
 } from "lucide-react";
 
 import {
@@ -15,14 +17,15 @@ import {
    SidebarGroup,
    SidebarGroupContent,
    SidebarGroupLabel,
+   SidebarHeader,
    SidebarMenu,
    SidebarMenuButton,
    SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-const urlCustom=(text:string):string=>{
-   return `/projects/my-little-shop/dashboard${text}`
-}
+const urlCustom = (text: string): string => {
+   return `/projects/my-little-shop/dashboard${text}`;
+};
 // Menu items.
 const items = [
    {
@@ -54,12 +57,28 @@ const items = [
 
 export function SidebarShop() {
    return (
-      <Sidebar collapsible="icon">
+      <Sidebar collapsible="icon" variant="inset" className="text-white">
+         <SidebarHeader>
+         <SidebarMenuButton
+              size="lg"
+              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+            >
+              <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                <GalleryVerticalEnd className="size-4" />
+              </div>
+              <div className="grid flex-1 text-left text-sm leading-tight">
+                <span className="truncate font-semibold">
+                  My little shop
+                </span>
+                <span className="truncate text-xs">Enterprise</span>
+              </div>
+            </SidebarMenuButton>
+         </SidebarHeader>
          <SidebarContent>
             <SidebarGroup>
-               <SidebarGroupLabel className="text-lg">
+               {/* <SidebarGroupLabel className="text-lg text-white">
                   Application
-               </SidebarGroupLabel>
+               </SidebarGroupLabel> */}
                <SidebarGroupContent>
                   <SidebarMenu>
                      {items.map((item) => (
