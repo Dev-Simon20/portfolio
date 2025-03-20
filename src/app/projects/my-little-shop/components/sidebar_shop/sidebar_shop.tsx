@@ -34,8 +34,8 @@ const items = [
       icon: Home,
    },
    {
-      title: "Sales",
-      url: urlCustom("/sales"),
+      title: "Orders",
+      url: urlCustom("/orders"),
       icon: BadgeDollarSign,
    },
    {
@@ -88,7 +88,7 @@ export function SidebarShop() {
                                  <item.icon
                                     style={{ width: "18px", height: "18px" }}
                                  />
-                                 <span className="font-dm_sans text-md font-medium">
+                                 <span className=" text-md font-light">
                                     {item.title}
                                  </span>
                               </a>

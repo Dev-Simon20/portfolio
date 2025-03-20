@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { abril, dm_sans, poppins } from "@/libs/fonts";
+import { abril, dm_sans, poppins, roboto_slab } from "@/libs/fonts";
 import HeaderMain from "@/components/header_main/header_mains";
 export const metadata: Metadata = {
   title: "Portfolio Simon-Dev",
@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.variable} ${abril.variable} ${dm_sans.variable} relative bg-zinc-900 text-white`}
+        className={`${poppins.variable} ${abril.variable} ${dm_sans.variable} ${roboto_slab.variable} relative bg-zinc-900 text-white`}
       >
         {/* <HeaderMain/> */}
         {children}

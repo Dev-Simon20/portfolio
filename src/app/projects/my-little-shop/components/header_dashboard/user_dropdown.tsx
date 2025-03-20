@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, LogOut, User } from "lucide-react";
+import { ChevronDown, LogOut, UserCircle } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -25,7 +25,7 @@ export default function UserDropdown({ name }: { name: string }) {
       });
    };
    const handleRedirect = () => {
-      router.push("/projects/my-little-shop/dashboard/my-profile");
+      router.push("/projects/my-little-shop/dashboard/account");
    };
    return (
       <div className="flex justify-end p-2 shadow-sm rounded-sm">
@@ -54,16 +54,16 @@ export default function UserDropdown({ name }: { name: string }) {
                   className="cursor-pointer flex items-center gap-2 py-2"
                   onClick={() => handleRedirect()}
                >
-                  <User className="h-4 w-4" />
-                  <span>Mi perfil</span>
+                  <UserCircle className="!h-5 !w-5 " />
+                  <span>Account</span>
                </DropdownMenuItem>
                <DropdownMenuSeparator />
                <DropdownMenuItem
                   className="cursor-pointer flex items-center gap-2 py-2 text-destructive"
                   onClick={() => handleOut()}
                >
-                  <LogOut className="h-4 w-4" />
-                  <span>Cerrar Sesión</span>
+                  <LogOut className="!h-5 !w-5" />
+                  <span>Log out</span>
                </DropdownMenuItem>
             </DropdownMenuContent>
          </DropdownMenu>

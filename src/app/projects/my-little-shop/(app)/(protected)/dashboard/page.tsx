@@ -25,7 +25,7 @@ export default async function DashboarPage() {
 
    return (
       <div className=" w-full min-h-screen p-2 md:p-8  flex flex-col ">
-         <h1 className="font-poppins text-xl md:text-3xl font-medium pl-4 md:pl-0">
+         <h1 className=" text-xl md:text-3xl font-medium pl-4 md:pl-0">
             Hello, {session.user?.name?.split(" ")[0]}!
          </h1>
          <article className="w-full grid grid-cols-3 gap-8 md:gap-24 text-slate-700 my-4 md:my-12 ">
