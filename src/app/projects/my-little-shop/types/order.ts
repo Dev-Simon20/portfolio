@@ -1,5 +1,5 @@
 export interface Order{
-    code: string;
+    code: number;
     date: string;
     quantity: number;
     expectedEarnings: number;

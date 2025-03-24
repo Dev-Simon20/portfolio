@@ -27,13 +27,13 @@ const FiltersTableOrders = ({
 }: Props) => {
     return (
         <div className="border border-1 border-gray-200 border-b-0 rounded-t-2xl p-3 flex">
-            <div className="relative w-auto">
+            <div className="relative w-full md:w-96">
                 <Search
                     className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
                     size={20}
                 />
                 <Input
-                    placeholder="Search orders..."
+                    placeholder="Search orders, client, state..."
                     value={orderText}
                     onChange={(event) => setOrderText(event.target.value)}
                     className="pl-10 rounded-2xl"
