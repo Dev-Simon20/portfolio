@@ -20,8 +20,7 @@ export default async function DashboarPage() {
 
    // const user = await prismaShop.user.findMany();
    // console.log("el usario es", user);
-   const evento = await prismaSchool.evento.findMany();
-   console.log("los eventos son", evento);
+   // const evento = await prismaSchool.evento.findMany();
 
    return (
       <div className=" w-full min-h-screen p-2 md:p-8  flex flex-col ">

@@ -1,7 +1,7 @@
 export type SaleFormValues = {
     client: {
         name: string;
-        id?: string | undefined;
+        id: string ;
     };
     paymentType: "cash" | "credit";
     products: {
