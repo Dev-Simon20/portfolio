@@ -18,8 +18,8 @@ export default async function DashboarPage() {
       return <div>Not Auteticated</div>;
    }
 
-   // const user = await prismaShop.user.findMany();
-   // console.log("el usario es", user);
+   // const user = await prismaShop.order.findMany();
+   console.log("el usario es",session);
    // const evento = await prismaSchool.evento.findMany();
 
    return (

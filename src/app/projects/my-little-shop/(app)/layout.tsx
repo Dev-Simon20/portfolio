@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-
+import { SessionProvider } from "next-auth/react";
 export default function MyLyttleShopLayout({
   children,
 }: Readonly<{
@@ -9,7 +9,9 @@ export default function MyLyttleShopLayout({
       <main
         className={`w-full min-h-screen relative bg-white text-gray-700 `}
       >
+        <SessionProvider>
         {children}
+        </SessionProvider>
       </main>
   );
 }

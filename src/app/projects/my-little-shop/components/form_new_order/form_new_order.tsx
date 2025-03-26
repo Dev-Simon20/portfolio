@@ -81,7 +81,7 @@ export default function SaleForm() {
             title: "Error",
             description: `Solo hay ${availableProduct.stock} unidades disponibles`,
             variant: "destructive",
-         })
+         }) 
          return
       }
 

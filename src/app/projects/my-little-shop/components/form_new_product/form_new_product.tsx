@@ -8,8 +8,16 @@ import { Card } from "@/components/ui/card"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { useSession } from "next-auth/react"
+import { useState, useTransition } from "react"
+import { createProduct } from "../../actions/create-product"
 
 const FormNewProduct = () => {
+    const { data: session, status } = useSession();
+    const [error, setError] = useState<string | null>(null);
+    const [isPending, startTransition] = useTransition();
+
+
 
     const form = useForm<z.infer<typeof NewProductValidateSchema>>({
         resolver: zodResolver(NewProductValidateSchema),
@@ -19,26 +27,35 @@ const FormNewProduct = () => {
         }
     })
     async function onSubmit(values: z.infer<typeof NewProductValidateSchema>) {
-        console.log(values)
-        // const formData=new FormData(values)
         const formData = new FormData();
 
-        Object.entries(values).forEach(([key, value]) => {
-            if (value !== undefined) {
-                formData.append(key, value instanceof File ? value : value.toString());
+        formData.append('image', values.image)
+
+        startTransition(async () => {
+            let errorTemp: string | null = null;
+            const url = await fetch('/api/upload', {
+                method: 'POST',
+                body: formData
+            })
+            const data = await url.json()
+            if (session?.user.id) {
+                const { image, ...restValues } = values;
+                const plainValues = JSON.parse(JSON.stringify(restValues));
+                const response = await createProduct(plainValues, data.data, session?.user.id)
+                if (response.error) {
+                    errorTemp = response.error;
+                }
+                setError(errorTemp);
             }
         });
-        console.log('form data: ',formData);
-        
-        const response = await fetch('/api/upload', {
-            method: 'POST',
-            body: formData
-        })
-        const data = await response.json()
-        console.log(data);
 
 
     }
+
+    if (status === "loading") return <p>Cargando...</p>;
+
+    if (!session) return <p>No has iniciado sesión</p>;
+
     return (
         <Card className="w-full max-w-md mx-auto p-3 text-gray-700">
             <h2>New Product</h2>
@@ -162,9 +179,11 @@ const FormNewProduct = () => {
                             </FormItem>
                         )}
                     />
-                    <Button type="submit" >
+                    <Button type="submit" disabled={isPending}>
                         Submit
                     </Button>
+                    {error && <FormMessage>{error}</FormMessage>}
+
 
                 </form>
 
