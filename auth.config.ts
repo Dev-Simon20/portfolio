@@ -28,11 +28,7 @@ export default {
                throw new Error("Incorrect oassword");
             }
 
-            return {
-               email:user.email,
-               id:user.id,
-               name:user.name
-            };
+            return user
          },
       }),
    ],
