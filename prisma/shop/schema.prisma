@@ -20,7 +20,7 @@ enum PaymentType {
 }
 enum StatusPaid {
   paid
-  debt
+  credit
 }
 model User {
   id            String    @id @default(cuid())
