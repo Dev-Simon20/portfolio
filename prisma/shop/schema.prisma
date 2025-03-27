@@ -15,7 +15,12 @@ enum Role {
 }
 enum PaymentType {
   cash
-  credit
+  yape
+  plin
+}
+enum StatusPaid {
+  paid
+  debt
 }
 model User {
   id            String    @id @default(cuid())
@@ -68,6 +73,7 @@ model Order {
   id          Int        @id @default(autoincrement())
   total       Float
   paymentType PaymentType
+  status      StatusPaid
   customerId  Int
   userId      String
   date        DateTime   @default(now())

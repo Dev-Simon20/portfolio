@@ -9,6 +9,7 @@ import {
    ChartNoAxesCombined,
    GalleryVerticalEnd,
    ChevronsUpDown,
+   Users
 } from "lucide-react";
 
 import {
@@ -42,6 +43,11 @@ const items = [
       title: "Products",
       url: urlCustom("/products"),
       icon: PackageSearch,
+   },
+   {
+      title: "Customers",
+      url: urlCustom("/customers"),
+      icon: Users,
    },
    {
       title: "Finance",
