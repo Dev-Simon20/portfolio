@@ -23,9 +23,12 @@ export const createCustomer = async (values: z.infer<typeof newCustomerSchema>, 
         return { success: true };
 
     } catch (error) {
-        console.log(error);
-
-        return { error: 'error 505' };
+        if (error instanceof Error) {
+            return { error: error.message }
+        }
+        else {
+            return { error: 'error 505' };
+        }
     }
 
 }

@@ -6,16 +6,21 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useSession } from "next-auth/react"
 import { useState, useTransition } from "react"
 import { useForm } from "react-hook-form"
-import { object, string, z } from "zod"
+import { object, string, unknown, z } from "zod"
 import { createCustomer } from "../../actions/create-customer"
 import { newCustomerSchema } from "../../lib/customer_validate_schema"
 
 
+interface FormNewCustomerProps {
+  loadData: (id: string) => void,
+  id: string,
+  isPending: boolean,
+  startTransition: (callback: () => void) => void
+}
 
 
-const FormNewCustomer = ({loadData,id}:{loadData:(id:string)=>void,id:string}) => {
-  const [error, setError] = useState<string | null>(null);
-  const [isPending, startTransition] = useTransition();
+const FormNewCustomer = ({ loadData, id, isPending, startTransition }: FormNewCustomerProps) => {
+  const [error, setError] = useState<string | unknown>(null);
 
   const { data: session, status } = useSession()
 
@@ -29,23 +34,22 @@ const FormNewCustomer = ({loadData,id}:{loadData:(id:string)=>void,id:string}) =
   async function onSubmit(values: z.infer<typeof newCustomerSchema>) {
 
     startTransition(async () => {
-      let errorTemp: string | null = null;
-
-      if (session?.user.id) {
+      try {
+        if (!session?.user.id) throw new Error('No existe una session')
         const response = await createCustomer(values, session.user.id);
-        
         if (response.error) {
-          errorTemp = response.error;
-        }else{
-          loadData(id)
-          form.reset()
+          throw new Error(response.error);
         }
-        setError(errorTemp);
+        setError('')
+      } catch (error) {
+        setError(error instanceof Error ? error.message : String(error));
+      } finally {
+        await loadData(id);
+        form.reset();
       }
-    })
-
-
+    });
   }
+
 
 
 
@@ -73,6 +77,8 @@ const FormNewCustomer = ({loadData,id}:{loadData:(id:string)=>void,id:string}) =
               </FormItem>
             )}
           />
+          {(typeof error === 'string') && <FormMessage>{error}</FormMessage>}
+
           <Button type="submit" disabled={isPending}>
             Register
           </Button>
