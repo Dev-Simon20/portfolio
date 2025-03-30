@@ -11,17 +11,17 @@ export const saleFormSchema = z.object({
     }),
 
     // Tipo de venta: al contado o crédito
-    paymentType: z.enum(["cash", "credit"], {
+    paymentType: z.enum(["cash", "yape","plin"], {
         required_error: "Seleccione un tipo de pago",
     }),
-
+    statusPaid:z.enum(["paid","credit"],{required_error:"Selecione el estado de la venta"}),
     // Lista de productos en la venta
     products: z
         .array(
             z.object({
-                id: z.string(),
+                id: z.number(),
                 name: z.string(),
-                price: z.number().positive(),
+                salePrice: z.number().positive(),
                 quantity: z.number().int().min(1),
             })
         )
@@ -46,14 +46,14 @@ export const validateSaleForm = (
             return `El producto ${cartProduct.name} ya no está disponible`;
         }
 
-        if (cartProduct.quantity > availableProduct.stock) {
-            return `La cantidad seleccionada (${cartProduct.quantity}) excede el stock disponible (${availableProduct.stock}) para ${cartProduct.name}`;
+        if (cartProduct.quantity > availableProduct.currentStock) {
+            return `La cantidad seleccionada (${cartProduct.quantity}) excede el stock disponible (${availableProduct.currentStock}) para ${cartProduct.name}`;
         }
     }
 
     // Validar que el total coincida con la suma de los productos
     const calculatedTotal = values.products.reduce(
-        (sum, product) => sum + product.price * product.quantity,
+        (sum, product) => sum + product.salePrice * product.quantity,
         0
     );
 

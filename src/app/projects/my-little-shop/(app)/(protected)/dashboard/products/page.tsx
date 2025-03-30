@@ -5,11 +5,7 @@ import { Button } from "@/components/ui/button"
 import { CircleArrowRight, ClipboardPaste, Eye, PlusCircle } from "lucide-react"
 import Link from "next/link"
 
-const AVAILABLE_PRODUCTS: Product[] = [
-   { id: "1", name: "Producto 1", price: 2, stock: 10, imageUrl: "/placeholder.svg" },
-   { id: "2", name: "Producto 2", price: 5, stock: 5, imageUrl: "/placeholder.svg" },
-   { id: "3", name: "Producto 3", price: 10, stock: 3, imageUrl: "/placeholder.svg" },
-]
+
 
 export interface Product_ {
    name: string;
@@ -29,7 +25,7 @@ const Products = async () => {
          Not Autenticade
       </div>
    }
-   const products: Product_[] = await prismaShop.product.findMany({
+   const products: Product[] = await prismaShop.product.findMany({
       where: {
          userId: session?.user.id
       }

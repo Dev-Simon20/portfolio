@@ -3,11 +3,12 @@ export type SaleFormValues = {
         name: string;
         id: string ;
     };
-    paymentType: "cash" | "credit";
+    paymentType: "cash" | "yape"|"plin";
+    statusPaid:"paid"|"credit"
     products: {
-        id: string;
+        id: number;
         name: string;
-        price: number;
+        salePrice: number;
         quantity: number;
     }[];
     total: number;

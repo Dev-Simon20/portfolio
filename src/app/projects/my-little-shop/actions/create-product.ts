@@ -49,7 +49,6 @@ export const createProduct = async (
         });
         return { success: true };
     } catch (error) {
-        console.log('el error es:',error);
         return { error: 'error 505' };
 
     }

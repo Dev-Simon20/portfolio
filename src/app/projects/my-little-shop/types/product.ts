@@ -1,8 +1,10 @@
 export type Product = {
-   id: string;
    name: string;
-   price: number;
-   // quantity: number;
-   stock: number;
-   imageUrl: string;
+   id: number;
+   image: string;
+   userId: string;
+   description: string | null;
+   purchasePrice: number;
+   salePrice: number;
+   currentStock: number;
 };

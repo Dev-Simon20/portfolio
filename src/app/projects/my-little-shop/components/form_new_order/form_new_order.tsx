@@ -18,11 +18,11 @@ import { type SaleFormValues } from "../../types/new_order"
 import { type Product } from "../../types/product"
 import { useToast } from "@/hooks/use-toast"
 // Simulación de productos disponibles (en una app real, esto vendría de una API)
-const AVAILABLE_PRODUCTS: Product[] = [
-   { id: "1", name: "Producto 1", price: 2, stock: 10, imageUrl: "/placeholder.svg" },
-   { id: "2", name: "Producto 2", price: 5, stock: 5, imageUrl: "/placeholder.svg" },
-   { id: "3", name: "Producto 3", price: 10, stock: 3, imageUrl: "/placeholder.svg" },
-]
+// const AVAILABLE_PRODUCTS: Product[] = [
+//    { id: 1, name: "Producto 1", salePrice: 2, currentStock: 10, image: "/placeholder.svg", userId: "", description: "", purchasePrice: 1 },
+//    { id: 2, name: "Producto 2", salePrice: 5, currentStock: 5, image: "/placeholder.svg", userId: "", description: "", purchasePrice: 1 },
+//    { id: 3, name: "Producto 3", salePrice: 10, currentStock: 3, image: "/placeholder.svg", userId: "", description: "", purchasePrice: 1 },
+// ]
 
 // Simulación de clientes registrados
 const REGISTERED_CLIENTS = [
@@ -33,9 +33,11 @@ const REGISTERED_CLIENTS = [
 
 ]
 
-export default function SaleForm() {
+export default function SaleForm({productsRequire}:{productsRequire:Product[]}) {
    const { toast } = useToast();
    // Configuración del formulario con React Hook Form y Zod
+   const AVAILABLE_PRODUCTS=productsRequire
+
    const {
       control,
       handleSubmit,
@@ -45,8 +47,9 @@ export default function SaleForm() {
    } = useForm<SaleFormValues>({
       resolver: zodResolver(saleFormSchema),
       defaultValues: {
-         client: { id: "1",name:"Client free" },
+         client: { id: "1", name: "Client free" },
          paymentType: "cash",
+         statusPaid: "paid",
          products: [],
          total: 0,
       },
@@ -58,7 +61,7 @@ export default function SaleForm() {
    // Calcular el total cuando cambian los productos
    useEffect(() => {
       if (watchProducts && watchProducts.length > 0) {
-         const total = watchProducts.reduce((sum, product) => sum + product.price * product.quantity, 0)
+         const total = watchProducts.reduce((sum, product) => sum + product.salePrice * product.quantity, 0)
          setValue("total", total)
       } else {
          setValue("total", 0)
@@ -68,20 +71,20 @@ export default function SaleForm() {
 
 
    // Manejar cambios en la cantidad de un producto
-   const handleQuantityChange = (productId: string, newQuantity: number) => {
+   const handleQuantityChange = (productId: number, newQuantity: number) => {
       // Encontrar el producto disponible
       const availableProduct = AVAILABLE_PRODUCTS.find((p) => p.id === productId)
 
       if (!availableProduct) return
 
       // Validar que la cantidad no exceda el stock
-      if (newQuantity > availableProduct.stock) {
+      if (newQuantity > availableProduct.currentStock) {
 
          toast({
             title: "Error",
-            description: `Solo hay ${availableProduct.stock} unidades disponibles`,
+            description: `Solo hay ${availableProduct.currentStock} unidades disponibles`,
             variant: "destructive",
-         }) 
+         })
          return
       }
 
@@ -101,7 +104,7 @@ export default function SaleForm() {
             updatedProducts.push({
                id: productId,
                name: availableProduct.name,
-               price: availableProduct.price,
+               salePrice: availableProduct.salePrice,
                quantity: newQuantity,
             })
          }
@@ -122,7 +125,6 @@ export default function SaleForm() {
          })
          return
       }
-
       // Procesar la venta (en una app real, esto enviaría los datos a una API)
       console.log("Venta procesada:", data)
       toast({
@@ -136,7 +138,7 @@ export default function SaleForm() {
    }
 
    // Obtener la cantidad de un producto en el carrito
-   const getProductQuantity = (productId: string): number => {
+   const getProductQuantity = (productId: number): number => {
       const product = watchProducts.find((p) => p.id === productId)
       return product ? product.quantity : 0
    }
@@ -193,13 +195,38 @@ export default function SaleForm() {
                               <Label htmlFor="cash">Cash</Label>
                            </div>
                            <div className="flex items-center space-x-2">
+                              <RadioGroupItem value="yape" id="yape" />
+                              <Label htmlFor="yape">Yape</Label>
+                           </div>
+                           <div className="flex items-center space-x-2">
+                              <RadioGroupItem value="plin" id="plin" />
+                              <Label htmlFor="plin">Plin</Label>
+                           </div>
+                        </RadioGroup>
+                     )}
+                  />
+                  {errors.paymentType && <p className="text-sm text-red-500">{errors.paymentType.message}</p>}
+               </div>
+               {/*estado de la venta  */}
+               <div className="space-y-2">
+                  <Label>Status order</Label>
+                  <Controller
+                     name="statusPaid"
+                     control={control}
+                     render={({ field }) => (
+                        <RadioGroup value={field.value} onValueChange={field.onChange} className="flex space-x-4">
+                           <div className="flex items-center space-x-2">
+                              <RadioGroupItem value="paid" id="paid" />
+                              <Label htmlFor="paid">Paid</Label>
+                           </div>
+                           <div className="flex items-center space-x-2">
                               <RadioGroupItem value="credit" id="credit" />
                               <Label htmlFor="credit">Credit</Label>
                            </div>
                         </RadioGroup>
                      )}
                   />
-                  {errors.paymentType && <p className="text-sm text-red-500">{errors.paymentType.message}</p>}
+                  {errors.statusPaid && <p className="text-sm text-red-500">{errors.statusPaid.message}</p>}
                </div>
 
                {/* Productos */}
@@ -209,11 +236,11 @@ export default function SaleForm() {
                      {AVAILABLE_PRODUCTS.map((product) => (
                         <div key={product.id} className="flex items-center border rounded-md p-3">
                            <div className="w-12 h-12 bg-gray-200 flex items-center justify-center rounded-md mr-3">
-                              <img src={product.imageUrl || "/placeholder.svg"} alt={'N'} className="w-8 h-8" />
+                              <img src={product.image || "/placeholder.svg"} alt={'N'} className="w-8 h-8" />
                            </div>
                            <div className="flex-1">
                               <p className="font-medium">{product.name}</p>
-                              <p className="text-sm">${product.price}</p>
+                              <p className="text-sm">${product.salePrice}</p>
                            </div>
                            <div className="flex items-center space-x-2">
                               <Button
@@ -233,7 +260,7 @@ export default function SaleForm() {
                                  size="icon"
                                  className="h-8 w-8"
                                  onClick={() => handleQuantityChange(product.id, getProductQuantity(product.id) + 1)}
-                                 disabled={getProductQuantity(product.id) >= product.stock}
+                                 disabled={getProductQuantity(product.id) >= product.currentStock}
                               >
                                  <Plus className="h-4 w-4" />
                               </Button>
