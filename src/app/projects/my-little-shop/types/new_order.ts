@@ -1,7 +1,7 @@
 export type SaleFormValues = {
     client: {
         name: string;
-        id: string ;
+        id: number ;
     };
     paymentType: "cash" | "yape"|"plin";
     statusPaid:"paid"|"credit"

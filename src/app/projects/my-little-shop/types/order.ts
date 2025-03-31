@@ -1,8 +1,11 @@
-export interface Order{
-    code: number;
-    date: string;
-    quantity: number;
-    expectedEarnings: number;
-    status: string;
-    customer: string;
-  }
+import { PaymentType, StatusPaid } from "@/prisma/generated/clientShop";
+import { Customer } from "./customer";
+
+export interface Order {
+   id: number;
+   total: number;
+   paymentType: PaymentType;
+   status: StatusPaid;
+   date: Date;
+   customer: Customer;
+}

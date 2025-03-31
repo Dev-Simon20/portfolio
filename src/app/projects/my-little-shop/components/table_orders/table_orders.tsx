@@ -46,6 +46,7 @@ import {
    SelectTrigger,
    SelectValue,
 } from "@/components/ui/select";
+import clsx from "clsx";
 
 const TableOrders = ({ ordersBack }: Props) => {
    const [orderText, setOrderText] = useState("");
@@ -59,9 +60,10 @@ const TableOrders = ({ ordersBack }: Props) => {
 
    const filteredData = orders.filter(
       (item) =>
-         item.customer.toLowerCase().includes(orderText.toLowerCase()) ||
+         item.customer.name.toLowerCase().includes(orderText.toLowerCase()) ||
          item.status.toLowerCase().includes(orderText.toLowerCase()) ||
-         item.code.toString().toLowerCase().includes(orderText.toLowerCase())
+         item.id.toString().toLowerCase().includes(orderText.toLowerCase())||
+         item.paymentType.toString().toLowerCase().includes(orderText.toLowerCase())
    );
    const totalPages = Math.ceil(filteredData.length / rowsPerPage);
 
@@ -87,14 +89,16 @@ const TableOrders = ({ ordersBack }: Props) => {
       let copyOrders = [...ordersBack];
 
       if (date?.from && date?.to) {
+         
          const startDate = startOfDay(date.from); // Asegurar que inicie en 00:00:00
          const endDate = endOfDay(date.to); // Asegurar que termine en 00:00:00
 
          console.log("Fecha inicio:", startDate);
          console.log("Fecha fin:", endDate);
-
          copyOrders = copyOrders.filter((o) => {
-            const fechaOrder = parseISO(o.date); // Asegura que solo se compare la fecha
+            console.log(o.date);
+            
+            const fechaOrder = o.date; // Asegura que solo se compare la fecha
             console.log("fecgha de la orden", fechaOrder);
 
             return isWithinInterval(fechaOrder, {
@@ -122,42 +126,62 @@ const TableOrders = ({ ordersBack }: Props) => {
                      <TableRow>
                         <TableHead className="w-24">Code</TableHead>
                         <TableHead>Date</TableHead>
-                        <TableHead className="text-center">Quantity</TableHead>
+                        <TableHead className="">State</TableHead>
+                        <TableHead className="text-center">
+                           Payment Type
+                        </TableHead>
                         <TableHead className="text-center">Earnigs</TableHead>
-                        <TableHead>State</TableHead>
-                        <TableHead>Client</TableHead>
+                        <TableHead>Customer</TableHead>
                         <TableHead className="text-end">Actions</TableHead>
                      </TableRow>
                   </TableHeader>
                   <TableBody>
                      {paginatedData.map((order) => (
-                        <TableRow key={order.code}>
+                        <TableRow key={order.id}>
                            <TableCell className="font-medium">
-                              {order.code}
+                              {order.id}
                            </TableCell>
                            <TableCell>
-                              {format(order.date, "dd MMM yyyy, hh:mm a", {
+                              {format(order.date, "dd MMM yyyy, HH:mm a", {
                                  locale: es,
                               })}
                            </TableCell>
-                           <TableCell className="text-center">
-                              {order.quantity}
-                           </TableCell>
-                           <TableCell className="text-center">
-                              ${order.expectedEarnings}
-                           </TableCell>
                            <TableCell>
                               <Badge
-                                 className={
-                                    order.status === "paid"
-                                       ? "bg-green-100 text-green-800 hover:bg-green-100"
-                                       : "bg-red-100 text-red-800 hover:bg-red-100"
-                                 }
+                                 className={clsx({
+                                    "bg-green-100 text-green-800 hover:bg-green-100":
+                                       order.status === "paid",
+                                    "bg-orange-100 text-orange-800 hover:bg-orange-100":
+                                       order.status === "credit",
+                                 })}
                               >
-                                 {order.status === "paid" ? "Paid" : "Due"}
+                                 {order.status.replace(/^./, (char) =>
+                                    char.toUpperCase()
+                                 )}
                               </Badge>
                            </TableCell>
-                           <TableCell>{order.customer}</TableCell>
+                           <TableCell
+                              className={clsx(
+                                 {
+                                    "text-purple-700":
+                                       order.paymentType === "yape",
+                                    "text-green-700":
+                                       order.paymentType === "cash",
+                                    "text-red-700":
+                                       order.paymentType === "plin",
+                                 },
+                                 "text-center  font-medium"
+                              )}
+                           >
+                              {order.paymentType.replace(/^./, (char) =>
+                                 char.toUpperCase()
+                              )}
+                           </TableCell>
+                           <TableCell className="text-center">
+                              ${order.total}
+                           </TableCell>
+
+                           <TableCell>{order.customer.name}</TableCell>
                            <TableCell className="text-right">
                               <div className="flex justify-end gap-2">
                                  <Button

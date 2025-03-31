@@ -6,8 +6,8 @@ import { SaleFormValues } from "../types/new_order";
 export const saleFormSchema = z.object({
     // Cliente: Se selecciona de una lista"
     client: z.object({
-        id: z.string(),
-        name: z.string().min(1, "El nombre del cliente es requerido"),
+        id: z.number(),
+        name: z.string({required_error:'Is require a customer'})
     }),
 
     // Tipo de venta: al contado o crédito

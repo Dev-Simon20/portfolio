@@ -2,13 +2,11 @@
 import { getCustomers } from "@/app/projects/my-little-shop/actions/get-customers";
 import Customerslist from "@/app/projects/my-little-shop/components/customers-list/customers_list";
 import FormNewCustomer from "@/app/projects/my-little-shop/components/form_new_customer/form_new_customer";
+import { Customer } from "@/app/projects/my-little-shop/types/customer";
 import { useSession } from "next-auth/react";
 import { useEffect, useState, useTransition } from "react";
 
-export interface Customer {
-   id: number;
-   name: string;
-}
+
 const CustomerPage = () => {
    const { data: session, status } = useSession();
    const [customers, setCutomers] = useState<Customer[]>([]);

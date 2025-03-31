@@ -1,6 +1,6 @@
 "use server";
 
-import { Customer } from "../(app)/(protected)/dashboard/customers/page";
+import { Customer } from "../types/customer";
 import { prismaShop } from "../lib/shop-db";
 
 export const getCustomers = async (userId: string): Promise<Customer[] | null> => {

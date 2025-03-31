@@ -17,27 +17,22 @@ import { saleFormSchema, validateSaleForm } from "../../lib/order_validate_schem
 import { type SaleFormValues } from "../../types/new_order"
 import { type Product } from "../../types/product"
 import { useToast } from "@/hooks/use-toast"
-// Simulación de productos disponibles (en una app real, esto vendría de una API)
-// const AVAILABLE_PRODUCTS: Product[] = [
-//    { id: 1, name: "Producto 1", salePrice: 2, currentStock: 10, image: "/placeholder.svg", userId: "", description: "", purchasePrice: 1 },
-//    { id: 2, name: "Producto 2", salePrice: 5, currentStock: 5, image: "/placeholder.svg", userId: "", description: "", purchasePrice: 1 },
-//    { id: 3, name: "Producto 3", salePrice: 10, currentStock: 3, image: "/placeholder.svg", userId: "", description: "", purchasePrice: 1 },
-// ]
+import { Customer } from "../../types/customer"
+import { procesNewOrder } from "../../actions/process_new_order"
+import { useRouter } from "next/navigation"
 
-// Simulación de clientes registrados
-const REGISTERED_CLIENTS = [
-   { id: "1", name: "Client free" },
-   { id: "2", name: "María" },
-   { id: "3", name: "Pamela" },
-   { id: "4", name: "Carlos" },
+interface SaleFormProps{
+   productsRequire:Product[],
+   customers:Customer[],
+   id:string
+}
 
-]
-
-export default function SaleForm({productsRequire}:{productsRequire:Product[]}) {
+export default function SaleForm({productsRequire,customers,id}:SaleFormProps) {
    const { toast } = useToast();
+   const router=useRouter();
    // Configuración del formulario con React Hook Form y Zod
    const AVAILABLE_PRODUCTS=productsRequire
-
+   const REGISTERED_CLIENTS=customers
    const {
       control,
       handleSubmit,
@@ -47,7 +42,7 @@ export default function SaleForm({productsRequire}:{productsRequire:Product[]}) 
    } = useForm<SaleFormValues>({
       resolver: zodResolver(saleFormSchema),
       defaultValues: {
-         client: { id: "1", name: "Client free" },
+         // client: { id: 1, name: "Client free" },
          paymentType: "cash",
          statusPaid: "paid",
          products: [],
@@ -114,7 +109,7 @@ export default function SaleForm({productsRequire}:{productsRequire:Product[]}) 
    }
 
    // Manejar el envío del formulario
-   const onSubmit = (data: SaleFormValues) => {
+   const onSubmit =async (data: SaleFormValues) => {
       // Validación personalizada
       const validationError = validateSaleForm(data, AVAILABLE_PRODUCTS)
       if (validationError) {
@@ -127,6 +122,8 @@ export default function SaleForm({productsRequire}:{productsRequire:Product[]}) 
       }
       // Procesar la venta (en una app real, esto enviaría los datos a una API)
       console.log("Venta procesada:", data)
+      const response=await procesNewOrder(data,id)
+      console.log(response);      
       toast({
          title: "Venta completada",
          description: `Total: $${data.total.toFixed(2)}`,
@@ -135,6 +132,8 @@ export default function SaleForm({productsRequire}:{productsRequire:Product[]}) 
       // Reiniciar el formulario
       setValue("products", [])
       setValue("total", 0)
+      router.push('/projects/my-little-shop/dashboard/orders')
+
    }
 
    // Obtener la cantidad de un producto en el carrito
@@ -157,12 +156,12 @@ export default function SaleForm({productsRequire}:{productsRequire:Product[]}) 
                      control={control}
                      render={({ field }) => (
                         <Select
-                           value={field.value}
+                           value={field.value?field.value.toString():undefined}
                            onValueChange={(value) => {
                               field.onChange(value)
-                              const client = REGISTERED_CLIENTS.find((c) => c.id === value)
+                              const client = REGISTERED_CLIENTS.find((c) => c.id === parseInt(value))
                               if (client) {
-                                 setValue("client.name", client.name)
+                                 setValue("client", client)
                               }
                            }}
                         >
@@ -171,7 +170,7 @@ export default function SaleForm({productsRequire}:{productsRequire:Product[]}) 
                            </SelectTrigger>
                            <SelectContent>
                               {REGISTERED_CLIENTS.map((client) => (
-                                 <SelectItem key={client.id} value={client.id}>
+                                 <SelectItem key={client.id} value={client.id.toString()}>
                                     {client.name}
                                  </SelectItem>
                               ))}
