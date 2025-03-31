@@ -3,6 +3,7 @@ import { getCustomers } from "@/app/projects/my-little-shop/actions/get-customer
 import Customerslist from "@/app/projects/my-little-shop/components/customers-list/customers_list";
 import FormNewCustomer from "@/app/projects/my-little-shop/components/form_new_customer/form_new_customer";
 import { Customer } from "@/app/projects/my-little-shop/types/customer";
+import LoaderConten from "@/components/loader/loader_conten";
 import { useSession } from "next-auth/react";
 import { useEffect, useState, useTransition } from "react";
 
@@ -26,7 +27,7 @@ const CustomerPage = () => {
       }
    }, [session?.user.id]);
    if (status === "loading") {
-      return <h2>Loading.....</h2>;
+      return <div className="w-full h-full"><LoaderConten/></div>;
    }
    if (!session?.user.id) {
       return <h2>Sesion no iniciada</h2>;

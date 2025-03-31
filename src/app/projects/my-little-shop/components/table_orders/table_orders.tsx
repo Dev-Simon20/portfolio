@@ -23,9 +23,7 @@ import { Order } from "../../types/order";
 import { Input } from "@/components/ui/input";
 import { useEffect, useState } from "react";
 import FiltersTableOrders from "./filters_table_orders";
-interface Props {
-   ordersBack: Order[];
-}
+
 import {
    endOfDay,
    format,
@@ -47,8 +45,13 @@ import {
    SelectValue,
 } from "@/components/ui/select";
 import clsx from "clsx";
+import { ButtonDeleteOrder } from "./buton_delete_order";
 
-const TableOrders = ({ ordersBack }: Props) => {
+interface Props {
+   ordersBack: Order[];
+   id_user: string;
+}
+const TableOrders = ({ ordersBack, id_user }: Props) => {
    const [orderText, setOrderText] = useState("");
    const [date, setDate] = useState<DateRange | undefined>({
       from: undefined,
@@ -62,8 +65,11 @@ const TableOrders = ({ ordersBack }: Props) => {
       (item) =>
          item.customer.name.toLowerCase().includes(orderText.toLowerCase()) ||
          item.status.toLowerCase().includes(orderText.toLowerCase()) ||
-         item.id.toString().toLowerCase().includes(orderText.toLowerCase())||
-         item.paymentType.toString().toLowerCase().includes(orderText.toLowerCase())
+         item.id.toString().toLowerCase().includes(orderText.toLowerCase()) ||
+         item.paymentType
+            .toString()
+            .toLowerCase()
+            .includes(orderText.toLowerCase())
    );
    const totalPages = Math.ceil(filteredData.length / rowsPerPage);
 
@@ -89,7 +95,6 @@ const TableOrders = ({ ordersBack }: Props) => {
       let copyOrders = [...ordersBack];
 
       if (date?.from && date?.to) {
-         
          const startDate = startOfDay(date.from); // Asegurar que inicie en 00:00:00
          const endDate = endOfDay(date.to); // Asegurar que termine en 00:00:00
 
@@ -97,7 +102,7 @@ const TableOrders = ({ ordersBack }: Props) => {
          console.log("Fecha fin:", endDate);
          copyOrders = copyOrders.filter((o) => {
             console.log(o.date);
-            
+
             const fechaOrder = o.date; // Asegura que solo se compare la fecha
             console.log("fecgha de la orden", fechaOrder);
 
@@ -112,7 +117,7 @@ const TableOrders = ({ ordersBack }: Props) => {
    }, [date]);
 
    return (
-      <section className="mt-6">
+      <section className="mt-6 w-full">
          <FiltersTableOrders
             orderText={orderText}
             setOrderText={setOrderText}
@@ -200,14 +205,7 @@ const TableOrders = ({ ordersBack }: Props) => {
                                     <Edit className="h-4 w-4" />
                                     <span className="sr-only">Editar</span>
                                  </Button>
-                                 <Button
-                                    variant="outline"
-                                    size="icon"
-                                    className="h-8 w-8 text-red-500 hover:text-red-600"
-                                 >
-                                    <Trash2 className="h-4 w-4" />
-                                    <span className="sr-only">Eliminar</span>
-                                 </Button>
+                                 <ButtonDeleteOrder id_order={order.id} id_user={id_user} setOrders={setOrders}/>
                               </div>
                            </TableCell>
                         </TableRow>

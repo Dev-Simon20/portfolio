@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { prismaShop } from "../lib/shop-db";
 
 export const processDeleteOrder = async (id_order: number, id_user: string) => {
@@ -42,7 +43,9 @@ export const processDeleteOrder = async (id_order: number, id_user: string) => {
             }
          })
       });
-
+    
+      revalidatePath("/projects/my-little-shop/dashboard/orders");
+      
       return { sucess: true };
    } catch (error) {
       if (error instanceof Error) {
