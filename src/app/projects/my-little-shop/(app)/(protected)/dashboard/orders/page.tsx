@@ -26,9 +26,13 @@ const OrdersPage = async () => {
       },
       include: {
          customer: true,
+         orderItems:{
+            include:{
+               product:true
+            }
+         }
       },
    });
-   console.log("las ordenes son: ", orders);
    if (!session?.user.id) {
       return <>Usuario no autenticado</>;
    }

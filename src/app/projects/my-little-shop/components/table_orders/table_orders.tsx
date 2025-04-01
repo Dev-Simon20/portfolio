@@ -46,6 +46,7 @@ import {
 } from "@/components/ui/select";
 import clsx from "clsx";
 import { ButtonDeleteOrder } from "./buton_delete_order";
+import { ButtonViewOrder } from "./button_view_order";
 
 interface Props {
    ordersBack: Order[];
@@ -189,14 +190,7 @@ const TableOrders = ({ ordersBack, id_user }: Props) => {
                            <TableCell>{order.customer.name}</TableCell>
                            <TableCell className="text-right">
                               <div className="flex justify-end gap-2">
-                                 <Button
-                                    variant="outline"
-                                    size="icon"
-                                    className="h-8 w-8"
-                                 >
-                                    <Eye className="h-4 w-4" />
-                                    <span className="sr-only">Ver</span>
-                                 </Button>
+                                 <ButtonViewOrder order={order}/>
                                  <Button
                                     variant="outline"
                                     size="icon"
