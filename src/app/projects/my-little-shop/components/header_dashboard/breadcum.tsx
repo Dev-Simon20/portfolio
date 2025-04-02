@@ -32,14 +32,16 @@ function generarRutas(url: string): Ruta[] {
 
 const Breadcum = () => {
    const pathname = usePathname();
+   console.log(pathname);
+   
    const roots = generarRutas(pathname).slice(2);
 
    return (
       <Breadcrumb>
-         <BreadcrumbList>
+         <BreadcrumbList className="gap-0">
             {roots.map((ruta, index) => (
-               <Fragment key={index}>
-                  <BreadcrumbItem>
+               <Fragment key={index} >
+                  <BreadcrumbItem className="">
                      {index !== roots.length - 1 ? (
                         <BreadcrumbLink href={ruta.path}>
                            {ruta.name}

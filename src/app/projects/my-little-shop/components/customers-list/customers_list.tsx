@@ -31,7 +31,7 @@ const Customerslist = ({
                      variant="outline"
                      size="icon"
                      className="text-green-500 hover:text-green-600"
-                     disabled={isPending}
+                     disabled={true}
                   >
                      <Eye />
                   </Button>
@@ -39,7 +39,7 @@ const Customerslist = ({
                      variant="outline"
                      size="icon"
                      className="text-orange-500 hover:text-orange-600"
-                     disabled={isPending}
+                     disabled={true}
                   >
                      <Edit />
                   </Button>
@@ -48,7 +48,7 @@ const Customerslist = ({
                      variant="outline"
                      size="icon"
                      className="text-red-500 hover:text-red-600"
-                     disabled={isPending}
+                     disabled={true}
                   >
                      <Trash />
                   </Button>

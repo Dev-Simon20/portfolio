@@ -41,7 +41,7 @@ export default function UserDropdown({ name }: { name: string }) {
                         {userName.charAt(0)}
                      </AvatarFallback>
                   </Avatar>
-                  <span className="text-sm font-medium">{userName}</span>
+                  <span className="text-sm hidden sm:block font-medium">{userName}</span>
                   <ChevronDown
                      className={`h-4 w-4 transition-transform ${
                         isOpen ? "rotate-180" : ""
@@ -49,7 +49,7 @@ export default function UserDropdown({ name }: { name: string }) {
                   />
                </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56">
+            <DropdownMenuContent align="end" className=" sm:w-40">
                <DropdownMenuItem
                   className="cursor-pointer flex items-center gap-2 py-2"
                   onClick={() => handleRedirect()}

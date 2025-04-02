@@ -28,7 +28,7 @@ export default async function MyLyttleShopDashboardLayout({
    return (
       <SidebarProvider className="font-roboto_slab">
          <SidebarShop />
-         <main className="w-full bg-white m-3 ml-0 rounded-3xl overflow-hidden ">
+         <main className="w-full bg-white lg:m-3 ml-0 rounded-3xl overflow-hidden ">
             <HeaderDashboard />
             {children}
          </main>

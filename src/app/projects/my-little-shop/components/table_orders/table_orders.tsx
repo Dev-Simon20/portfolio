@@ -1,6 +1,5 @@
 "use client";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import {
    Table,
    TableBody,
@@ -9,44 +8,23 @@ import {
    TableHeader,
    TableRow,
 } from "@/components/ui/table";
-import {
-   ChevronFirst,
-   ChevronLast,
-   ChevronLeft,
-   ChevronRight,
-   Edit,
-   Eye,
-   Search,
-   Trash2,
-} from "lucide-react";
 import { Order } from "../../types/order";
-import { Input } from "@/components/ui/input";
 import { useEffect, useState } from "react";
 import FiltersTableOrders from "./filters_table_orders";
 
 import {
    endOfDay,
    format,
-   isAfter,
-   isBefore,
-   isEqual,
    isWithinInterval,
-   parseISO,
-   parseJSON,
    startOfDay,
 } from "date-fns";
 import { DateRange } from "react-day-picker";
 import { es } from "date-fns/locale";
-import {
-   Select,
-   SelectContent,
-   SelectItem,
-   SelectTrigger,
-   SelectValue,
-} from "@/components/ui/select";
+
 import clsx from "clsx";
 import { ButtonDeleteOrder } from "./buton_delete_order";
 import { ButtonViewOrder } from "./button_view_order";
+import PaginationTable from "./pagination_table";
 
 interface Props {
    ordersBack: Order[];
@@ -131,13 +109,13 @@ const TableOrders = ({ ordersBack, id_user }: Props) => {
                   <TableHeader>
                      <TableRow>
                         <TableHead className="w-24">Code</TableHead>
-                        <TableHead>Date</TableHead>
+                        <TableHead>Customer</TableHead>
+                        <TableHead className="min-w-[101px]">Date</TableHead>
                         <TableHead className="">State</TableHead>
-                        <TableHead className="text-center">
+                        <TableHead className="text-center truncate">
                            Payment Type
                         </TableHead>
                         <TableHead className="text-center">Earnigs</TableHead>
-                        <TableHead>Customer</TableHead>
                         <TableHead className="text-end">Actions</TableHead>
                      </TableRow>
                   </TableHeader>
@@ -147,19 +125,20 @@ const TableOrders = ({ ordersBack, id_user }: Props) => {
                            <TableCell className="font-medium">
                               {order.id}
                            </TableCell>
+                           <TableCell className="truncate max-w-[100px] sm:max-w-[250px]">{order.customer.name}</TableCell>
+
                            <TableCell>
                               {format(order.date, "dd MMM yyyy, HH:mm a", {
                                  locale: es,
                               })}
                            </TableCell>
-                           <TableCell>
+                           <TableCell className="text-start tracking-wider">
                               <Badge
-                                 className={clsx({
-                                    "bg-green-100 text-green-800 hover:bg-green-100":
-                                       order.status === "paid",
-                                    "bg-orange-100 text-orange-800 hover:bg-orange-100":
-                                       order.status === "credit",
-                                 })}
+                                 variant={
+                                    order.status === "paid"
+                                       ? "success"
+                                       : "destructive"
+                                 }
                               >
                                  {order.status.replace(/^./, (char) =>
                                     char.toUpperCase()
@@ -169,11 +148,11 @@ const TableOrders = ({ ordersBack, id_user }: Props) => {
                            <TableCell
                               className={clsx(
                                  {
-                                    "text-purple-700":
+                                    "text-purple-600":
                                        order.paymentType === "yape",
-                                    "text-green-700":
+                                    "text-green-600":
                                        order.paymentType === "cash",
-                                    "text-red-700":
+                                    "text-red-600":
                                        order.paymentType === "plin",
                                  },
                                  "text-center  font-medium"
@@ -186,20 +165,15 @@ const TableOrders = ({ ordersBack, id_user }: Props) => {
                            <TableCell className="text-center">
                               ${order.total}
                            </TableCell>
-
-                           <TableCell>{order.customer.name}</TableCell>
                            <TableCell className="text-right">
                               <div className="flex justify-end gap-2">
-                                 <ButtonViewOrder order={order}/>
-                                 <Button
-                                    variant="outline"
-                                    size="icon"
-                                    className="h-8 w-8"
-                                 >
-                                    <Edit className="h-4 w-4" />
-                                    <span className="sr-only">Editar</span>
-                                 </Button>
-                                 <ButtonDeleteOrder id_order={order.id} id_user={id_user} setOrders={setOrders}/>
+                                 <ButtonViewOrder order={order} />
+                                 {/* <ButtonUpdateOrder/>       */}
+                                 <ButtonDeleteOrder
+                                    id_order={order.id}
+                                    id_user={id_user}
+                                    setOrders={setOrders}
+                                 />
                               </div>
                            </TableCell>
                         </TableRow>
@@ -208,76 +182,13 @@ const TableOrders = ({ ordersBack, id_user }: Props) => {
                </Table>
             </div>
          </div>
-         <article className="flex justify-between border border-1 border-gray-200 p-3 border-t-0">
-            <section className="flex items-center justify-between px-2">
-               <div className="flex items-center space-x-2">
-                  <span className="text-sm text-muted-foreground">
-                     Filas por página
-                  </span>
-                  <Select
-                     value={rowsPerPage.toString()}
-                     onValueChange={handleRowsPerPageChange}
-                  >
-                     <SelectTrigger className="h-8 w-[70px]">
-                        <SelectValue placeholder={rowsPerPage.toString()} />
-                     </SelectTrigger>
-                     <SelectContent>
-                        <SelectItem value="5">5</SelectItem>
-                        <SelectItem value="10">10</SelectItem>
-                        <SelectItem value="20">20</SelectItem>
-                        <SelectItem value="50">50</SelectItem>
-                     </SelectContent>
-                  </Select>
-               </div>
-            </section>
-            <section className="flex items-center space-x-6 ">
-               <span className="text-sm text-muted-foreground">
-                  Página {currentPage} de {totalPages || 1}
-               </span>
-               <div className="flex items-center space-x-1">
-                  <Button
-                     variant="outline"
-                     size="icon"
-                     className="h-8 w-8"
-                     onClick={() => handlePageChange(1)}
-                     disabled={currentPage === 1}
-                  >
-                     <ChevronFirst className="h-4 w-4" />
-                     <span className="sr-only">Primera página</span>
-                  </Button>
-                  <Button
-                     variant="outline"
-                     size="icon"
-                     className="h-8 w-8"
-                     onClick={() => handlePageChange(currentPage - 1)}
-                     disabled={currentPage === 1}
-                  >
-                     <ChevronLeft className="h-4 w-4" />
-                     <span className="sr-only">Página anterior</span>
-                  </Button>
-                  <Button
-                     variant="outline"
-                     size="icon"
-                     className="h-8 w-8"
-                     onClick={() => handlePageChange(currentPage + 1)}
-                     disabled={currentPage === totalPages || totalPages === 0}
-                  >
-                     <ChevronRight className="h-4 w-4" />
-                     <span className="sr-only">Página siguiente</span>
-                  </Button>
-                  <Button
-                     variant="outline"
-                     size="icon"
-                     className="h-8 w-8"
-                     onClick={() => handlePageChange(totalPages)}
-                     disabled={currentPage === totalPages || totalPages === 0}
-                  >
-                     <ChevronLast className="h-4 w-4" />
-                     <span className="sr-only">Última página</span>
-                  </Button>
-               </div>
-            </section>
-         </article>
+         <PaginationTable
+            currentPage={currentPage}
+            handlePageChange={handlePageChange}
+            handleRowsPerPageChange={handleRowsPerPageChange}
+            rowsPerPage={rowsPerPage}
+            totalPages={totalPages}
+         />
       </section>
    );
 };

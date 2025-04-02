@@ -26,8 +26,8 @@ const FiltersTableOrders = ({
     setOrderText,
 }: Props) => {
     return (
-        <div className="border border-1 border-gray-200 border-b-0 rounded-t-2xl p-3 flex">
-            <div className="relative w-full md:w-96">
+        <div className="border border-1 border-gray-200 border-b-0 rounded-t-2xl p-3 flex flex-col gap-2 sm:flex-row">
+            <div className="relative w-full md:w-80 ">
                 <Search
                     className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
                     size={20}
@@ -36,10 +36,10 @@ const FiltersTableOrders = ({
                     placeholder="Search orders, client, state..."
                     value={orderText}
                     onChange={(event) => setOrderText(event.target.value)}
-                    className="pl-10 rounded-2xl"
+                    className="pl-10 rounded-md"
                 />
             </div>
-            <div className="ml-auto">
+            <div className=" sm:ml-auto ">
                 <div className={cn("grid gap-2")}>
                     <Popover>
                         <PopoverTrigger asChild>
@@ -47,8 +47,8 @@ const FiltersTableOrders = ({
                                 id="date"
                                 variant={"outline"}
                                 className={cn(
-                                    "w-[300px] justify-start text-left font-normal",
-                                    !date && "text-muted-foreground text-gray-900 rounded-2xl"
+                                    "w-full sm:min-w-[300px] justify-start text-left font-normal",
+                                    !date && "text-muted-foreground text-gray-900 rounded-md "
                                 )}
                             >
                                 <CalendarIcon />
