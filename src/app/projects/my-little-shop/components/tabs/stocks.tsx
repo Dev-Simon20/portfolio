@@ -65,7 +65,7 @@ const columns: TableColumn<Stock>[] = [
             </Button>
          </div>
       ),
-      center:true
+      right:true
    },
 ];
 

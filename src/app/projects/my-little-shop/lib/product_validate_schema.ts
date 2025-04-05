@@ -5,7 +5,7 @@ const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/web
 
 export const NewProductValidateSchema = object({
     name: string({ required_error: "Name is required" })
-        .min(1, "Email is required"),
+        .min(3, "Minimun Name is 3 chatacters"),
     description: string().optional(),
     purchase_price: number({ required_error: "Purchase price is required" }).positive("Purchase price is only positive")
         .min(0.1, "Puchase price minimun is 0.1"),

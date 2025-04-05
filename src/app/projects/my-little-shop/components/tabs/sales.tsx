@@ -50,6 +50,7 @@ const columns: TableColumn<OrderItemProduct>[] = [
       name: "Earnings",
       selector: (row) => row.earnings,
       sortable: true,
+      center:true
    },
    {
       name: "State",
@@ -60,6 +61,7 @@ const columns: TableColumn<OrderItemProduct>[] = [
       name: "Type Payment",
       selector: (row) => row.order.paymentType,
       sortable: true,
+      center:true      
    },
 ];
 

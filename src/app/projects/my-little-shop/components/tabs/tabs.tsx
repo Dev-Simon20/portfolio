@@ -20,7 +20,7 @@ export default function UnderlineTabs({selectedIndex,setSelectedIndex}:Props) {
         onClick={() => setSelectedIndex(i)}
         className="py-2 px-3 border-none"
       >
-        <p className="flex gap-1 items-center text-[#2a6274]">
+        <p className={`flex gap-1 items-center ${selectedIndex===i?'text-[#2a6274]':'text-gray-600'} `}>
         {tab.name}<tab.icon className="size-5 font-light"/>
         </p>
  

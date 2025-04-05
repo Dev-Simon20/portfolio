@@ -17,7 +17,7 @@ import { useEffect, useState, useTransition } from "react";
 //3  datos del productod
 
 const ProductDetailPage = () => {
-   const [isPending, startTransition] = useTransition();
+   const [isPending, setIsPending] = useState(false);
    const router = useRouter();
    const { data: session, status } = useSession();
    const searchParams = useSearchParams();
@@ -26,15 +26,17 @@ const ProductDetailPage = () => {
    const [product, setProduct] = useState<ProductAll | null>(null);
 
    const getDataProduct = async () => {
-      startTransition(async () => {
-         if (!cod || !session?.user.id) return;
-         const data = await getProduct(parseInt(cod), session.user.id);
-         if (data && "error" in data) {
-            console.log("Hubo un error:", data.error);
-         } else {
-            setProduct(data);
-         }
-      });
+      setIsPending(true);
+      if (!cod || !session?.user.id) return;
+      const data = await getProduct(parseInt(cod), session.user.id);
+      if (data && "error" in data) {
+         console.log("Hubo un error:", data.error);
+      } else {
+         setProduct(data);
+      }
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+      console.log("log en la funcion");
+      setIsPending(false);
    };
 
    useEffect(() => {
@@ -57,7 +59,7 @@ const ProductDetailPage = () => {
 
    return (
       <div className=" p-2 md:p-6 h-full flex flex-col gap-4">
-         <h1 className="text-lg">
+         <h1 className="text-lg text-gray-600">
             <span className="font-semibold">NAME PRODUCT:</span>{" "}
             <span>{product?.name}</span>
          </h1>
@@ -74,7 +76,12 @@ const ProductDetailPage = () => {
                   {selectedIndex === 1 && (
                      <StocksProductTab product={product} />
                   )}
-                  {selectedIndex === 2 && <DataProductTab product={product} />}
+                  {selectedIndex === 2 && (
+                     <DataProductTab
+                        product={product}
+                        getDataProduct={getDataProduct}
+                     />
+                  )}
                </>
             )}
             {isPending && (
