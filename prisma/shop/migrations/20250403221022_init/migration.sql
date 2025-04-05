@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "OrderItem" ADD COLUMN     "earnings" DOUBLE PRECISION NOT NULL DEFAULT 1;

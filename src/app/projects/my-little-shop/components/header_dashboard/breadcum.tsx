@@ -31,9 +31,7 @@ function generarRutas(url: string): Ruta[] {
 }
 
 const Breadcum = () => {
-   const pathname = usePathname();
-   console.log(pathname);
-   
+   const pathname = usePathname();   
    const roots = generarRutas(pathname).slice(2);
 
    return (

@@ -32,7 +32,6 @@ export const createProduct = async (
                     userId: id,
                     name: data.name,
                     description: data.description,
-                    purchasePrice: data.purchase_price,
                     salePrice: data.sale_price,
                     image: url,
                     currentStock: data.quantity,
@@ -42,7 +41,8 @@ export const createProduct = async (
             await tx.stock.create({
                 data: {
                     productId: product.id,
-                    quantity: product.currentStock
+                    quantity: product.currentStock,
+                    purchasePrice: data.purchase_price,
                 }
             })
             return product;

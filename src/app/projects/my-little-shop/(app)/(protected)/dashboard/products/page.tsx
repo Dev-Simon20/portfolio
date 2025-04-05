@@ -6,17 +6,6 @@ import { CircleArrowRight, ClipboardPaste, Eye, PlusCircle } from "lucide-react"
 import Link from "next/link"
 
 
-
-export interface Product_ {
-   name: string;
-   id: number;
-   image: string;
-   userId: string;
-   description: string | null;
-   purchasePrice: number;
-   salePrice: number;
-   currentStock: number;
-}
 const Products = async () => {
 
    const session = await auth()

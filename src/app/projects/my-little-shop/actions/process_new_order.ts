@@ -33,6 +33,7 @@ export const procesNewOrder = async (
                   orderId: order.id,
                   productId: p.id,
                   quantity: p.quantity,
+                  earnings: p.quantity * p.salePrice,
                },
             });
 
