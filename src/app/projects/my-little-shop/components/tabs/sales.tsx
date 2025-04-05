@@ -9,9 +9,23 @@ import DataTable, {
 import { format } from "date-fns";
 import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
+import { es } from "date-fns/locale";
 interface Props {
    product: ProductAll;
 }
+
+const customStyles = {
+   headRow: {
+      style: {
+         backgroundColor: "#2a6274", // Color de fondo de la cabecera
+      },
+   },
+   headCells: {
+      style: {
+         color: "white", // Color del texto en las cabeceras
+      },
+   },
+};
 
 const columns: TableColumn<OrderItemProduct>[] = [
    {
@@ -26,7 +40,10 @@ const columns: TableColumn<OrderItemProduct>[] = [
    },
    {
       name: "Date",
-      cell: (row) => format(new Date(row.order.date), "dd/MM/yyyy"),
+      cell: (row) =>
+         format(new Date(row.order.date), "dd MMM yyyy, HH:mm a", {
+            locale: es,
+         }),
       sortable: true,
    },
    {
@@ -71,11 +88,13 @@ const SalesProductTab = ({ product }: Props) => {
    return (
       <div className=" border rounded-2xl overflow-hidden">
          <DataTable
+            className="!rounded-none"
             columns={columns}
             data={datosFiltrados}
             pagination
             highlightOnHover
             striped
+            customStyles={customStyles}
             // expandableRows
             // expandableRowsComponent={ExpandedComponent}
             subHeader

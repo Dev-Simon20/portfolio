@@ -67,7 +67,7 @@ const ProductDetailPage = () => {
                setSelectedIndex={setSelectedIndex}
             />
          </article>
-         <article className="w-full h-full relative mb-10">
+         <article className="w-full h-full  relative mb-10">
             {!isPending && product && (
                <>
                   {selectedIndex === 0 && <SalesProductTab product={product} />}
