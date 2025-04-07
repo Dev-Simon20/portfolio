@@ -14,13 +14,30 @@ export const createNewStock = async (
       };
    }
    try {
-      await prismaShop.stock.create({
-         data: {
-            purchasePrice: data.purchasePrice,
-            quantity: data.quantity,
-            productId: data.productId,
-         },
-      });
+      await prismaShop.$transaction(async(tx)=>{
+         await tx.stock.create({
+            data: {
+               purchasePrice: data.purchasePrice,
+               quantity: data.quantity,
+               productId: data.productId,
+            },
+         });
+         await tx.product.update({
+            where:{
+               id:data.productId
+            },
+            data:{
+               currentStock:{
+                  increment:data.quantity
+               }
+            }
+         })
+      }) 
+      
+      
+      return{
+         status:'El stock fue actualizado con exito'
+      }
    } catch (error) {
       if (error instanceof Error) {
          return {

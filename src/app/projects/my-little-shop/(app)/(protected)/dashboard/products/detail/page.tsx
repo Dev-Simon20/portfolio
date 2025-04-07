@@ -24,6 +24,7 @@ const ProductDetailPage = () => {
    const cod = searchParams.get("cod");
    const [selectedIndex, setSelectedIndex] = useState<number>(0);
    const [product, setProduct] = useState<ProductAll | null>(null);
+   const [totalUnits, setTotalUnit] = useState<number | null>(null);
 
    const getDataProduct = async () => {
       setIsPending(true);
@@ -33,6 +34,9 @@ const ProductDetailPage = () => {
          console.log("Hubo un error:", data.error);
       } else {
          setProduct(data);
+         let sumador = 0;
+         data.orderItems.map((o) => (sumador += o.quantity));
+         setTotalUnit(sumador);
       }
       await new Promise((resolve) => setTimeout(resolve, 3000));
       console.log("log en la funcion");
@@ -59,10 +63,16 @@ const ProductDetailPage = () => {
 
    return (
       <div className=" p-2 md:p-6 h-full flex flex-col gap-4">
-         <h1 className="text-lg text-gray-600">
-            <span className="font-semibold">NAME PRODUCT:</span>{" "}
-            <span>{product?.name}</span>
-         </h1>
+         <div className="flex justify-between items-center ">
+            <h1 className="text-lg text-gray-600">
+               <span className="font-semibold">NAME PRODUCT:</span>{" "}
+               <span>{product?.name}</span>
+            </h1>
+            <h1 className="text-lg text-gray-600 outline outline-1 outline-gray-200 shadow-md px-4 py-1  rounded">
+               <span className="">Quantity sold:</span>{" "}
+               <span className="font-medium">{totalUnits?`${totalUnits} uds.`:'Loading...'}</span>
+            </h1>
+         </div>
          <article>
             <UnderlineTabs
                selectedIndex={selectedIndex}
@@ -74,7 +84,10 @@ const ProductDetailPage = () => {
                <>
                   {selectedIndex === 0 && <SalesProductTab product={product} />}
                   {selectedIndex === 1 && (
-                     <StocksProductTab product={product} />
+                     <StocksProductTab
+                        product={product}
+                        getDataProduct={getDataProduct}
+                     />
                   )}
                   {selectedIndex === 2 && (
                      <DataProductTab

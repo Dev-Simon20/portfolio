@@ -13,6 +13,7 @@ import { Edit, Eye, Trash } from "lucide-react";
 import ButtonNewStock from "./button_new_stock";
 interface Props {
    product: ProductAll;
+   getDataProduct: () => void;
 }
 const customStyles = {
    headRow: {
@@ -70,12 +71,12 @@ const columns: TableColumn<Stock>[] = [
    },
 ];
 
-const StocksProductTab = ({ product }: Props) => {
+const StocksProductTab = ({ product, getDataProduct }: Props) => {
    const [datosFiltrados, setDatosFiltrados] = useState<Stock[]>(
       product.stocks
    );
 
-   const [isPending,setIsPenfing]=useState(false)
+   const [isPending, setIsPenfing] = useState(false);
 
    return (
       <div className="border rounded-2xl overflow-hidden">
@@ -88,7 +89,12 @@ const StocksProductTab = ({ product }: Props) => {
             striped
             customStyles={customStyles}
             subHeader
-            subHeaderComponent={<ButtonNewStock product={product}/>}
+            subHeaderComponent={
+               <ButtonNewStock
+                  product={product}
+                  getDataProduct={getDataProduct}
+               />
+            }
             // disabled={true}
          />
       </div>
