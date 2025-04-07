@@ -6,6 +6,7 @@ import { prismaShop } from "@g/lib/shop-db";
 export const { handlers, signIn, signOut, auth } = NextAuth({
    adapter: PrismaAdapter(prismaShop),
    ...authConfig,
+   secret: process.env.NEXTAUTH_SECRET,
    session: { strategy: "jwt" },
    callbacks: {
       jwt({ token, user }) {
