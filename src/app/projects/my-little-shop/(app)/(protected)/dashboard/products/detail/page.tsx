@@ -1,10 +1,10 @@
 "use client";
 
 import { getProduct } from "@/app/projects/my-little-shop/actions/get_product";
-import DataProductTab from "@/app/projects/my-little-shop/components/tabs/data";
-import SalesProductTab from "@/app/projects/my-little-shop/components/tabs/sales";
-import StocksProductTab from "@/app/projects/my-little-shop/components/tabs/stocks";
-import UnderlineTabs from "@/app/projects/my-little-shop/components/tabs/tabs";
+import DataProductTab from "@/app/projects/my-little-shop/components/tabs_detail_product/data";
+import SalesProductTab from "@/app/projects/my-little-shop/components/tabs_detail_product/sales";
+import StocksProductTab from "@/app/projects/my-little-shop/components/tabs_detail_product/stocks";
+import UnderlineTabs from "@/app/projects/my-little-shop/components/tabs_detail_product/tabs";
 import { ProductAll } from "@/app/projects/my-little-shop/types/product_all_information";
 import LoaderNoContent from "@/components/loader/loader-no-content";
 import { useSession } from "next-auth/react";

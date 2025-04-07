@@ -10,6 +10,7 @@ import { Stock } from "../../types/stock";
 import { es } from "date-fns/locale";
 import { Button } from "@/components/ui/button";
 import { Edit, Eye, Trash } from "lucide-react";
+import ButtonNewStock from "./button_new_stock";
 interface Props {
    product: ProductAll;
 }
@@ -65,7 +66,7 @@ const columns: TableColumn<Stock>[] = [
             </Button>
          </div>
       ),
-      right:true
+      right: true,
    },
 ];
 
@@ -73,6 +74,8 @@ const StocksProductTab = ({ product }: Props) => {
    const [datosFiltrados, setDatosFiltrados] = useState<Stock[]>(
       product.stocks
    );
+
+   const [isPending,setIsPenfing]=useState(false)
 
    return (
       <div className="border rounded-2xl overflow-hidden">
@@ -85,11 +88,7 @@ const StocksProductTab = ({ product }: Props) => {
             striped
             customStyles={customStyles}
             subHeader
-            subHeaderComponent={
-               <Button className="bg-[#2a6274] hover:bg-[#2a6274]/90">
-                  New Stock
-               </Button>
-            }
+            subHeaderComponent={<ButtonNewStock product={product}/>}
             // disabled={true}
          />
       </div>
