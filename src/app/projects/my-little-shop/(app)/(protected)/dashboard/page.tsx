@@ -1,7 +1,7 @@
 import { auth } from "@/auth";
 import LogoutButton from "@/components/logout-buton/logout_button";
 import { prismaShop } from "../../../lib/shop-db";
-import { prismaSchool } from "../../../lib/school-db";
+// import { prismaSchool } from "../../../lib/school-db";
 import { HiMiniCurrencyDollar } from "react-icons/hi2";
 import { FaDropbox } from "react-icons/fa";
 import { CiShoppingBasket } from "react-icons/ci";
