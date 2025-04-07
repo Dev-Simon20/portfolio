@@ -6,13 +6,7 @@
       "dev": "next dev",
       "build": "next build",
       "start": "next start",
-      "lint": "next lint",
-      "postinstall": "npx prisma generate --schema ./prisma-little-shop/schema.prisma --no-engine && npx prisma generate --schema ./prisma-school-database/schema.prisma --no-engine",
-      "generate": "npx prisma generate --schema ./prisma-little-shop/schema.prisma --no-engine && npx prisma generate --schema ./prisma-school-database/schema.prisma --no-engine",
-      "migrate": "npx prisma migrate dev --schema ./prisma-little-shop/schema.prisma && npx prisma migrate dev --schema ./prisma-school-database/schema.prisma",
-      "deploy": "npx prisma migrate deploy --schema ./prisma-little-shop/schema.prisma && npx prisma migrate deploy --schema ./prisma-school-database/schema.prisma",
-      "studio": "npx prisma studio --schema ./prisma/shop/schema.prisma --port 5556 ",
-      "studix": "npx prisma studio --schema ./prisma/schemaSchool.prisma --port 5555"
+      "lint": "next lint"
    },
    "dependencies": {
       "@auth/prisma-adapter": "^2.8.0",
