@@ -35,7 +35,11 @@ const Formregister = () => {
    async function onSubmit(values: z.infer<typeof RegisterSchema>) {
       startTransition(async () => {
          let errorTemp:(string|null)=null;
+         console.log('Incia el registro');
+         
          const response = await registerActionLittleShop(values);
+         console.log('respuesta del registro',response );
+
          if (response.error) {
             errorTemp=response.error;
          } else {
@@ -69,7 +73,7 @@ const Formregister = () => {
                      </FormItem>
                   )}
                />
-               <FormField
+               {/* <FormField
                   control={form.control}
                   name="birthdate"
                   render={({ field }) => (
@@ -94,7 +98,7 @@ const Formregister = () => {
                         <FormMessage />
                      </FormItem>
                   )}
-               />
+               /> */}
                <FormField
                   control={form.control}
                   name="email"
