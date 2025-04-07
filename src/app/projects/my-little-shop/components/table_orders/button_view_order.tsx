@@ -16,7 +16,7 @@ import { Eye } from "lucide-react";
 import { Order } from "../../types/order";
 
 export function ButtonViewOrder({ order }: { order: Order }) {
-   var total = 0;
+   let total = 0;
 
    for (const p of order.orderItems) {
       total += p.quantity * p.product.salePrice;

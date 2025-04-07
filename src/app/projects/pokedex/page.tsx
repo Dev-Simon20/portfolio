@@ -25,7 +25,7 @@ export default function PokePage() {
   const handleClose = () => setOpen(false);
 
   const callPokemons = async () => {
-    let pokes: Pokemon[] = [];
+    const pokes: Pokemon[] = [];
     for (let i = 1; i <= 40; i++) {
       try {
         const data = await pokeClient.get(`/api/v2/pokemon/${i}`);

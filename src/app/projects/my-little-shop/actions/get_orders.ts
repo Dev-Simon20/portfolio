@@ -11,7 +11,12 @@ export const getOrders = async (userId: string): Promise<Order[] | null> => {
            userId:userId
         },
         include:{
-           customer:true
+           customer:true,
+           orderItems:{
+            include:{
+               product:true
+            }
+         }
         }
      })
 

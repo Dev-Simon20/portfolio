@@ -34,7 +34,7 @@ export function NavigationMenuDemo() {
                                  My projects
                               </div>
                               <p className="text-sm leading-tight text-muted-foreground">
-                                 Explore some of the projects I've worked on,
+                                 Explore some of the projects Ive worked on,
                                  using modern technologies like Tailwind CSS,
                                  Radix UI, and Next.js.
                               </p>

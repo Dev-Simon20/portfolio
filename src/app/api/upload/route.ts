@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { arrayBuffer } from "stream/consumers";
 import { v2 as cloudinary, UploadApiResponse } from 'cloudinary'
 // cloudinary.config({
 //     cloud_name: 'dtavjvcu6',
@@ -44,6 +43,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ message: "Imagen subida", data: response.secure_url });
     } catch (error) {
         // Manejamos cualquier error en la subida
+        console.log(error);
         return NextResponse.json({ error: "Error al subir la imagen" }, { status: 500 });
     }
 
