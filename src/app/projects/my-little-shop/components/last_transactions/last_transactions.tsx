@@ -32,7 +32,7 @@ export default function LastTransactions({ orders }: { orders: Order[] }) {
                   </TableRow>
                </TableHeader>
                <TableBody>
-                  {orders.slice(0,5).map((order) => (
+                  {orders.slice(0,4).map((order) => (
                      <TableRow key={order.id}>
                         <TableCell className="font-medium">
                            {order.id}

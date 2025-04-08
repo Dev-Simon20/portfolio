@@ -9,7 +9,9 @@ import {
    ChartNoAxesCombined,
    GalleryVerticalEnd,
    ChevronsUpDown,
-   Users
+   ShoppingCart,
+   Users,
+   ShoppingBag
 } from "lucide-react";
 
 import {
@@ -37,7 +39,7 @@ const items = [
    {
       title: "Orders",
       url: urlCustom("/orders"),
-      icon: BadgeDollarSign,
+      icon: ShoppingCart,
    },
    {
       title: "Products",
@@ -69,8 +71,8 @@ export function SidebarShop() {
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                <GalleryVerticalEnd className="size-4" />
+              <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-emerald-100  text-emerald-700">
+                <ShoppingBag className="size-4" />
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-semibold">
