@@ -563,10 +563,10 @@ export default function MyLittlePageShop() {
                            </div>
                         </div>
                         <p className="mt-4 text-gray-500 dark:text-gray-400">
-                           "Mi Little Shop ha transformado la forma en que
+                        &quot Mi Little Shop ha transformado la forma en que
                            gestiono mi tienda. Ahora puedo controlar mi
                            inventario y ventas de manera eficiente, lo que me ha
-                           permitido enfocarme en hacer crecer mi negocio."
+                           permitido enfocarme en hacer crecer mi negocio. &quot
                         </p>
                      </div>
                      <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm dark:bg-gray-900">
@@ -586,11 +586,11 @@ export default function MyLittlePageShop() {
                            </div>
                         </div>
                         <p className="mt-4 text-gray-500 dark:text-gray-400">
-                           "La facilidad de uso de Mi Little Shop es
+                        &quot La facilidad de uso de Mi Little Shop es
                            impresionante. En minutos pude configurar mi tienda y
                            comenzar a gestionar mis productos. El soporte
                            técnico es excelente y siempre están dispuestos a
-                           ayudar."
+                           ayudar. &quot
                         </p>
                      </div>
                      <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm dark:bg-gray-900">
@@ -610,11 +610,11 @@ export default function MyLittlePageShop() {
                            </div>
                         </div>
                         <p className="mt-4 text-gray-500 dark:text-gray-400">
-                           "Gracias a Mi Little Shop he podido organizar mejor
+                        &quot Gracias a Mi Little Shop he podido organizar mejor
                            mi inventario y llevar un control preciso de mis
                            ventas. Los informes me ayudan a tomar mejores
                            decisiones para mi negocio. ¡Lo recomiendo
-                           totalmente!"
+                           totalmente! &quot
                         </p>
                      </div>
                   </div>
