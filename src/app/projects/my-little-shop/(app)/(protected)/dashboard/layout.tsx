@@ -13,7 +13,6 @@ import {
 import HeaderDashboard from "../../../components/header_dashboard/header_dashboard";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-import { Toaster } from "@/components/ui/toaster";
 
 export default async function MyLyttleShopDashboardLayout({
    children,
@@ -32,7 +31,6 @@ export default async function MyLyttleShopDashboardLayout({
             <HeaderDashboard />
             {children}
          </main>
-         <Toaster />
       </SidebarProvider>
    );
 }

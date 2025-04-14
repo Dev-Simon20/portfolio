@@ -22,138 +22,15 @@ import {
    AccordionItem,
    AccordionTrigger,
 } from "@/components/ui/accordion";
+import HeaderNotAuth from "../components/header-not-auth/header-not-auth";
 
 export default function MyLittlePageShop() {
    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
    return (
       <div className="flex min-h-screen flex-col items-center">
-         <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 mx-auto ">
-            <div className="container flex h-16 items-center justify-between  mx-auto">
-               <div className="flex items-center gap-2">
-                  <ShoppingBag className="h-6 w-6 text-emerald-600" />
-                  <span className="text-xl font-bold">Mi Little Shop</span>
-               </div>
-               <nav className="hidden md:flex items-center gap-6">
-                  <Link
-                     href="#features"
-                     className="text-sm font-medium hover:underline underline-offset-4"
-                  >
-                     Características
-                  </Link>
-                  <Link
-                     href="#benefits"
-                     className="text-sm font-medium hover:underline underline-offset-4"
-                  >
-                     Beneficios
-                  </Link>
-                  <Link
-                     href="#pricing"
-                     className="text-sm font-medium hover:underline underline-offset-4"
-                  >
-                     Precios
-                  </Link>
-                  <Link
-                     href="#faq"
-                     className="text-sm font-medium hover:underline underline-offset-4"
-                  >
-                     FAQ
-                  </Link>
-               </nav>
-               <div className="flex items-center gap-4">
-                  <Button asChild variant="ghost" className="hidden md:flex">
-                     <Link href="#">Iniciar Sesión</Link>
-                  </Button>
-                  <Button asChild className="hidden md:flex">
-                     <Link href="#">Registrarse</Link>
-                  </Button>
-                  <Button
-                     variant="outline"
-                     size="icon"
-                     className="md:hidden"
-                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                  >
-                     <span className="sr-only">Toggle menu</span>
-                     {mobileMenuOpen ? (
-                        <svg
-                           xmlns="http://www.w3.org/2000/svg"
-                           width="24"
-                           height="24"
-                           viewBox="0 0 24 24"
-                           fill="none"
-                           stroke="currentColor"
-                           strokeWidth="2"
-                           strokeLinecap="round"
-                           strokeLinejoin="round"
-                           className="h-6 w-6"
-                        >
-                           <path d="M18 6 6 18" />
-                           <path d="m6 6 12 12" />
-                        </svg>
-                     ) : (
-                        <svg
-                           xmlns="http://www.w3.org/2000/svg"
-                           width="24"
-                           height="24"
-                           viewBox="0 0 24 24"
-                           fill="none"
-                           stroke="currentColor"
-                           strokeWidth="2"
-                           strokeLinecap="round"
-                           strokeLinejoin="round"
-                           className="h-6 w-6"
-                        >
-                           <line x1="4" x2="20" y1="12" y2="12" />
-                           <line x1="4" x2="20" y1="6" y2="6" />
-                           <line x1="4" x2="20" y1="18" y2="18" />
-                        </svg>
-                     )}
-                  </Button>
-               </div>
-            </div>
-            {mobileMenuOpen && (
-               <div className="container md:hidden py-4 border-t">
-                  <nav className="flex flex-col gap-4">
-                     <Link
-                        href="#features"
-                        className="text-sm font-medium"
-                        onClick={() => setMobileMenuOpen(false)}
-                     >
-                        Características
-                     </Link>
-                     <Link
-                        href="#benefits"
-                        className="text-sm font-medium"
-                        onClick={() => setMobileMenuOpen(false)}
-                     >
-                        Beneficios
-                     </Link>
-                     <Link
-                        href="#pricing"
-                        className="text-sm font-medium"
-                        onClick={() => setMobileMenuOpen(false)}
-                     >
-                        Precios
-                     </Link>
-                     <Link
-                        href="#faq"
-                        className="text-sm font-medium"
-                        onClick={() => setMobileMenuOpen(false)}
-                     >
-                        FAQ
-                     </Link>
-                     <div className="flex flex-col gap-2 mt-2">
-                        <Button asChild variant="outline">
-                           <Link href="#">Iniciar Sesión</Link>
-                        </Button>
-                        <Button asChild>
-                           <Link href="#">Registrarse</Link>
-                        </Button>
-                     </div>
-                  </nav>
-               </div>
-            )}
-         </header>
+         <HeaderNotAuth />
+
          <main className="!flex-1 w-full flex flex-col">
             <section className="py-12 md:py-24 lg:py-32 bg-gradient-to-b from-white to-gray-50 dark:from-background dark:to-background/90 mx-auto">
                <div className="container px-4 md:px-6">
@@ -161,13 +38,12 @@ export default function MyLittlePageShop() {
                      <div className="flex flex-col justify-center space-y-4">
                         <div className="space-y-2">
                            <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                              Gestiona tu negocio con facilidad
+                              Manage your business effortlessly
                            </h1>
                            <p className="max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
-                              Mi Little Shop es la herramienta perfecta para
-                              pequeños emprendimientos que necesitan gestionar
-                              sus productos, ventas y clientes de manera
-                              sencilla y eficiente.
+                              <b>My Little Shop</b> is the perfect tool for
+                              small businesses looking to easily manage their
+                              products, sales, and customers—all in one place.
                            </p>
                         </div>
                         <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -206,15 +82,15 @@ export default function MyLittlePageShop() {
                   <div className="flex flex-col items-center justify-center space-y-4 text-center">
                      <div className="space-y-2">
                         <div className="inline-block rounded-lg bg-emerald-100 px-3 py-1 text-sm text-emerald-700 dark:bg-emerald-700/20 dark:text-emerald-400">
-                           Características
+                           Features
                         </div>
                         <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
-                           Todo lo que necesitas para tu negocio
+                           Everything you need for your business
                         </h2>
                         <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                           Mi Little Shop ofrece todas las herramientas
-                           necesarias para gestionar tu inventario, ventas y
-                           clientes en un solo lugar.
+                           My Little Shop gives you all the tools you need to
+                           manage your inventory, sales, and customers—all in
+                           one place.
                         </p>
                      </div>
                   </div>
@@ -225,12 +101,12 @@ export default function MyLittlePageShop() {
                         </div>
                         <div className="space-y-2">
                            <h3 className="text-xl font-bold">
-                              Gestión de Productos
+                              Product Management
                            </h3>
                            <p className="text-gray-500 dark:text-gray-400">
-                              Crea, actualiza y elimina productos fácilmente.
-                              Gestiona tu inventario y mantén un control preciso
-                              de tu stock.
+                              Create, update, and delete products with ease.
+                              Manage your inventory and keep precise control
+                              over your stock.
                            </p>
                         </div>
                      </div>
@@ -239,13 +115,10 @@ export default function MyLittlePageShop() {
                            <ShoppingBag className="h-6 w-6 text-emerald-700 dark:text-emerald-400" />
                         </div>
                         <div className="space-y-2">
-                           <h3 className="text-xl font-bold">
-                              Registro de Ventas
-                           </h3>
+                           <h3 className="text-xl font-bold">Sales Tracking</h3>
                            <p className="text-gray-500 dark:text-gray-400">
-                              Registra tus ventas de forma rápida y sencilla.
-                              Genera informes y analiza el rendimiento de tu
-                              negocio.
+                              Record your sales quickly and easily. Generate
+                              reports and analyze your business performance.
                            </p>
                         </div>
                      </div>
@@ -255,11 +128,11 @@ export default function MyLittlePageShop() {
                         </div>
                         <div className="space-y-2">
                            <h3 className="text-xl font-bold">
-                              Gestión de Clientes
+                              Customer Management
                            </h3>
                            <p className="text-gray-500 dark:text-gray-400">
-                              Mantén un registro de tus clientes y sus compras.
-                              Mejora tu servicio y fideliza a tus clientes.
+                              Keep track of your customers and their purchases.
+                              Enhance your service and build customer loyalty.
                            </p>
                         </div>
                      </div>
@@ -275,14 +148,13 @@ export default function MyLittlePageShop() {
                   <div className="flex flex-col items-center justify-center space-y-4 text-center">
                      <div className="space-y-2">
                         <div className="inline-block rounded-lg bg-emerald-100 px-3 py-1 text-sm text-emerald-700 dark:bg-emerald-700/20 dark:text-emerald-400">
-                           Beneficios
+                           Benefits
                         </div>
                         <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
-                           ¿Por qué elegir Mi Little Shop?
+                           Why Choose Mi Little Shop?
                         </h2>
                         <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                           Descubre cómo nuestra aplicación puede ayudarte a
-                           hacer crecer tu negocio.
+                           Discover how our app can help you grow your business.
                         </p>
                      </div>
                   </div>
@@ -293,12 +165,10 @@ export default function MyLittlePageShop() {
                               <Check className="h-4 w-4 text-emerald-700 dark:text-emerald-400" />
                            </div>
                            <div className="space-y-1">
-                              <h3 className="text-xl font-bold">
-                                 Fácil de usar
-                              </h3>
+                              <h3 className="text-xl font-bold">Easy to Use</h3>
                               <p className="text-gray-500 dark:text-gray-400">
-                                 Interfaz intuitiva que no requiere
-                                 conocimientos técnicos avanzados.
+                                 Intuitive interface that doesn’t require
+                                 advanced technical knowledge.
                               </p>
                            </div>
                         </div>
@@ -321,12 +191,10 @@ export default function MyLittlePageShop() {
                               <Check className="h-4 w-4 text-emerald-700 dark:text-emerald-400" />
                            </div>
                            <div className="space-y-1">
-                              <h3 className="text-xl font-bold">
-                                 Acceso desde cualquier lugar
-                              </h3>
+                              <h3 className="text-xl font-bold">Time Saving</h3>
                               <p className="text-gray-500 dark:text-gray-400">
-                                 Gestiona tu negocio desde cualquier dispositivo
-                                 con conexión a internet.
+                                 Automate repetitive tasks and spend more time
+                                 growing your business.
                               </p>
                            </div>
                         </div>
@@ -338,11 +206,11 @@ export default function MyLittlePageShop() {
                            </div>
                            <div className="space-y-1">
                               <h3 className="text-xl font-bold">
-                                 Informes detallados
+                                 Detailed Reports
                               </h3>
                               <p className="text-gray-500 dark:text-gray-400">
-                                 Obtén información valiosa sobre el rendimiento
-                                 de tu negocio con informes detallados.
+                                 Get valuable insights into your business
+                                 performance with detailed reports.
                               </p>
                            </div>
                         </div>
@@ -352,11 +220,11 @@ export default function MyLittlePageShop() {
                            </div>
                            <div className="space-y-1">
                               <h3 className="text-xl font-bold">
-                                 Seguridad garantizada
+                                 Guaranteed Security
                               </h3>
                               <p className="text-gray-500 dark:text-gray-400">
-                                 Tus datos están seguros con nosotros gracias a
-                                 nuestras medidas de seguridad avanzadas.
+                                 Your data is secure with us thanks to our
+                                 advanced security measures.
                               </p>
                            </div>
                         </div>
@@ -366,11 +234,11 @@ export default function MyLittlePageShop() {
                            </div>
                            <div className="space-y-1">
                               <h3 className="text-xl font-bold">
-                                 Soporte técnico
+                                 Technical Support
                               </h3>
                               <p className="text-gray-500 dark:text-gray-400">
-                                 Nuestro equipo de soporte está disponible para
-                                 ayudarte con cualquier duda o problema.
+                                 Our support team is available to assist you
+                                 with any questions or issues.
                               </p>
                            </div>
                         </div>
@@ -384,28 +252,28 @@ export default function MyLittlePageShop() {
                   <div className="flex flex-col items-center justify-center space-y-4 text-center">
                      <div className="space-y-2">
                         <div className="inline-block rounded-lg bg-emerald-100 px-3 py-1 text-sm text-emerald-700 dark:bg-emerald-700/20 dark:text-emerald-400">
-                           Precios
+                           Pricing
                         </div>
                         <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
-                           Planes adaptados a tus necesidades
+                           Plans tailored to your needs
                         </h2>
                         <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                           Elige el plan que mejor se adapte a tu negocio y
-                           comienza a gestionar tu inventario hoy mismo.
+                           Choose the plan that best suits your business and
+                           start managing your inventory today.
                         </p>
                      </div>
                   </div>
                   <div className="mx-auto grid max-w-5xl gap-6 py-12 lg:grid-cols-3 lg:gap-8">
                      <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm dark:bg-gray-900">
                         <div className="space-y-2">
-                           <h3 className="text-2xl font-bold">Básico</h3>
+                           <h3 className="text-2xl font-bold">Free</h3>
                            <p className="text-gray-500 dark:text-gray-400">
-                              Ideal para emprendedores que están comenzando.
+                              Ideal for entrepreneurs who are just starting out.
                            </p>
                         </div>
                         <div className="mt-4 flex items-baseline text-gray-900 dark:text-white">
                            <span className="text-4xl font-bold tracking-tight">
-                              $9.99
+                              S/. 0.00
                            </span>
                            <span className="ml-1 text-xl font-semibold">
                               /mes
@@ -414,23 +282,23 @@ export default function MyLittlePageShop() {
                         <ul className="mt-6 space-y-4">
                            <li className="flex items-center">
                               <Check className="mr-2 h-4 w-4 text-emerald-600" />
-                              <span>Hasta 100 productos</span>
+                              <span>Up to 20 products</span>
                            </li>
                            <li className="flex items-center">
                               <Check className="mr-2 h-4 w-4 text-emerald-600" />
-                              <span>Gestión de inventario básica</span>
+                              <span>Basic inventory management</span>
                            </li>
                            <li className="flex items-center">
                               <Check className="mr-2 h-4 w-4 text-emerald-600" />
-                              <span>Registro de ventas</span>
+                              <span>Sales tracking</span>
                            </li>
                            <li className="flex items-center">
                               <Check className="mr-2 h-4 w-4 text-emerald-600" />
-                              <span>Soporte por email</span>
+                              <span>Email support</span>
                            </li>
                         </ul>
                         <Button className="mt-8 bg-emerald-600 hover:bg-emerald-700">
-                           Comenzar gratis
+                           Start for free
                         </Button>
                      </div>
                      <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm dark:bg-gray-900 relative">
@@ -438,14 +306,14 @@ export default function MyLittlePageShop() {
                            Popular
                         </div>
                         <div className="space-y-2">
-                           <h3 className="text-2xl font-bold">Profesional</h3>
+                           <h3 className="text-2xl font-bold">Professional</h3>
                            <p className="text-gray-500 dark:text-gray-400">
-                              Perfecto para negocios en crecimiento.
+                              Perfect for growing businesses.
                            </p>
                         </div>
                         <div className="mt-4 flex items-baseline text-gray-900 dark:text-white">
                            <span className="text-4xl font-bold tracking-tight">
-                              $19.99
+                              S/. 9.99
                            </span>
                            <span className="ml-1 text-xl font-semibold">
                               /mes
@@ -454,39 +322,39 @@ export default function MyLittlePageShop() {
                         <ul className="mt-6 space-y-4">
                            <li className="flex items-center">
                               <Check className="mr-2 h-4 w-4 text-emerald-600" />
-                              <span>Hasta 500 productos</span>
+                              <span>Up to 500 products</span>
                            </li>
                            <li className="flex items-center">
                               <Check className="mr-2 h-4 w-4 text-emerald-600" />
-                              <span>Gestión de inventario avanzada</span>
+                              <span>Advanced inventory management</span>
                            </li>
                            <li className="flex items-center">
                               <Check className="mr-2 h-4 w-4 text-emerald-600" />
-                              <span>Informes de ventas detallados</span>
+                              <span>Detailed sales reports</span>
                            </li>
                            <li className="flex items-center">
                               <Check className="mr-2 h-4 w-4 text-emerald-600" />
-                              <span>Gestión de clientes</span>
+                              <span>Customer management</span>
                            </li>
                            <li className="flex items-center">
                               <Check className="mr-2 h-4 w-4 text-emerald-600" />
-                              <span>Soporte prioritario</span>
+                              <span>Priority support</span>
                            </li>
                         </ul>
                         <Button className="mt-8 bg-emerald-600 hover:bg-emerald-700">
-                           Comenzar prueba gratuita
+                           Start Free Trial
                         </Button>
                      </div>
                      <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm dark:bg-gray-900">
                         <div className="space-y-2">
-                           <h3 className="text-2xl font-bold">Empresarial</h3>
+                           <h3 className="text-2xl font-bold">Enterprise</h3>
                            <p className="text-gray-500 dark:text-gray-400">
-                              Para negocios establecidos con grandes volúmenes.
+                              For established businesses with large volumes.
                            </p>
                         </div>
                         <div className="mt-4 flex items-baseline text-gray-900 dark:text-white">
                            <span className="text-4xl font-bold tracking-tight">
-                              $39.99
+                              S/. 14.99
                            </span>
                            <span className="ml-1 text-xl font-semibold">
                               /mes
@@ -495,145 +363,50 @@ export default function MyLittlePageShop() {
                         <ul className="mt-6 space-y-4">
                            <li className="flex items-center">
                               <Check className="mr-2 h-4 w-4 text-emerald-600" />
-                              <span>Productos ilimitados</span>
+                              <span>Unlimited products</span>
                            </li>
                            <li className="flex items-center">
                               <Check className="mr-2 h-4 w-4 text-emerald-600" />
-                              <span>Gestión de inventario premium</span>
+                              <span>Premium inventory management</span>
                            </li>
                            <li className="flex items-center">
                               <Check className="mr-2 h-4 w-4 text-emerald-600" />
-                              <span>Análisis avanzado de ventas</span>
+                              <span>Advanced sales analytics</span>
                            </li>
                            <li className="flex items-center">
                               <Check className="mr-2 h-4 w-4 text-emerald-600" />
-                              <span>CRM completo</span>
+                              <span>Full CRM</span>
                            </li>
                            <li className="flex items-center">
                               <Check className="mr-2 h-4 w-4 text-emerald-600" />
-                              <span>Integraciones personalizadas</span>
+                              <span>Custom integrations</span>
                            </li>
                            <li className="flex items-center">
                               <Check className="mr-2 h-4 w-4 text-emerald-600" />
-                              <span>Soporte 24/7</span>
+                              <span>24/7 support</span>
                            </li>
                         </ul>
                         <Button className="mt-8 bg-emerald-600 hover:bg-emerald-700">
-                           Contactar ventas
+                           Contact Sales
                         </Button>
-                     </div>
-                  </div>
-               </div>
-            </section>
-
-            <section
-               id="testimonials"
-               className="py-12 md:py-24 lg:py-32 bg-gray-50 dark:bg-gray-900/50"
-            >
-               <div className="container px-4 md:px-6 mx-auto">
-                  <div className="flex flex-col items-center justify-center space-y-4 text-center">
-                     <div className="space-y-2">
-                        <div className="inline-block rounded-lg bg-emerald-100 px-3 py-1 text-sm text-emerald-700 dark:bg-emerald-700/20 dark:text-emerald-400">
-                           Testimonios
-                        </div>
-                        <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
-                           Lo que dicen nuestros clientes
-                        </h2>
-                        <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                           Descubre cómo Mi Little Shop ha ayudado a otros
-                           emprendedores a hacer crecer sus negocios.
-                        </p>
-                     </div>
-                  </div>
-                  <div className="mx-auto grid max-w-5xl gap-6 py-12 lg:grid-cols-3 lg:gap-8">
-                     <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm dark:bg-gray-900">
-                        <div className="flex items-center gap-4">
-                           <Image
-                              src="/images/avatar-maria.jpg"
-                              alt="María González"
-                              width={40}
-                              height={40}
-                              className="rounded-full object-cover"
-                           />
-                           <div>
-                              <h3 className="font-bold">María González</h3>
-                              <p className="text-sm text-gray-500 dark:text-gray-400">
-                                 Tienda de Ropa
-                              </p>
-                           </div>
-                        </div>
-                        <p className="mt-4 text-gray-500 dark:text-gray-400">
-                        &quot Mi Little Shop ha transformado la forma en que
-                           gestiono mi tienda. Ahora puedo controlar mi
-                           inventario y ventas de manera eficiente, lo que me ha
-                           permitido enfocarme en hacer crecer mi negocio. &quot
-                        </p>
-                     </div>
-                     <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm dark:bg-gray-900">
-                        <div className="flex items-center gap-4">
-                           <Image
-                              src="/placeholder.svg?height=100&width=100"
-                              alt="Avatar"
-                              width={40}
-                              height={40}
-                              className="rounded-full"
-                           />
-                           <div>
-                              <h3 className="font-bold">Carlos Rodríguez</h3>
-                              <p className="text-sm text-gray-500 dark:text-gray-400">
-                                 Tienda de Electrónica
-                              </p>
-                           </div>
-                        </div>
-                        <p className="mt-4 text-gray-500 dark:text-gray-400">
-                        &quot La facilidad de uso de Mi Little Shop es
-                           impresionante. En minutos pude configurar mi tienda y
-                           comenzar a gestionar mis productos. El soporte
-                           técnico es excelente y siempre están dispuestos a
-                           ayudar. &quot
-                        </p>
-                     </div>
-                     <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm dark:bg-gray-900">
-                        <div className="flex items-center gap-4">
-                           <Image
-                              src="/placeholder.svg?height=100&width=100"
-                              alt="Avatar"
-                              width={40}
-                              height={40}
-                              className="rounded-full"
-                           />
-                           <div>
-                              <h3 className="font-bold">Laura Martínez</h3>
-                              <p className="text-sm text-gray-500 dark:text-gray-400">
-                                 Pastelería
-                              </p>
-                           </div>
-                        </div>
-                        <p className="mt-4 text-gray-500 dark:text-gray-400">
-                        &quot Gracias a Mi Little Shop he podido organizar mejor
-                           mi inventario y llevar un control preciso de mis
-                           ventas. Los informes me ayudan a tomar mejores
-                           decisiones para mi negocio. ¡Lo recomiendo
-                           totalmente! &quot
-                        </p>
                      </div>
                   </div>
                </div>
             </section>
 
             <section id="faq" className="py-12 md:py-24 lg:py-32 ">
-               <div className="container px-4 md:px-6  mx-auto">
+               <div className="container px-4 md:px-6 mx-auto">
                   <div className="flex flex-col items-center justify-center space-y-4 text-center">
                      <div className="space-y-2">
                         <div className="inline-block rounded-lg bg-emerald-100 px-3 py-1 text-sm text-emerald-700 dark:bg-emerald-700/20 dark:text-emerald-400">
                            FAQ
                         </div>
                         <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
-                           Preguntas frecuentes
+                           Frequently Asked Questions
                         </h2>
                         <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                           Encuentra respuestas a las preguntas más comunes
-                           sobre Mi Little Shop.
+                           Find answers to the most common questions about Mi
+                           Little Shop.
                         </p>
                      </div>
                   </div>
@@ -641,62 +414,57 @@ export default function MyLittlePageShop() {
                      <Accordion type="single" collapsible className="w-full">
                         <AccordionItem value="item-1">
                            <AccordionTrigger>
-                              ¿Necesito conocimientos técnicos para usar Mi
-                              Little Shop?
+                              Do I need technical knowledge to use Mi Little
+                              Shop?
                            </AccordionTrigger>
                            <AccordionContent>
-                              No, Mi Little Shop está diseñado para ser
-                              intuitivo y fácil de usar. No necesitas
-                              conocimientos técnicos avanzados para gestionar tu
-                              negocio con nuestra aplicación.
+                              No, Mi Little Shop is designed to be intuitive and
+                              easy to use. You do not need advanced technical
+                              knowledge to manage your business with our app.
                            </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-2">
                            <AccordionTrigger>
-                              ¿Puedo acceder a Mi Little Shop desde mi teléfono
-                              móvil?
+                              Can I access Mi Little Shop from my mobile phone?
                            </AccordionTrigger>
                            <AccordionContent>
-                              Sí, Mi Little Shop es completamente responsive y
-                              puedes acceder desde cualquier dispositivo con
-                              conexión a internet, ya sea un ordenador, tablet o
-                              teléfono móvil.
+                              Yes, Mi Little Shop is fully responsive, and you
+                              can access it from any device with an internet
+                              connection, whether it’s a computer, tablet, or
+                              mobile phone.
                            </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-3">
                            <AccordionTrigger>
-                              ¿Cómo puedo empezar a usar Mi Little Shop?
+                              How can I start using Mi Little Shop?
                            </AccordionTrigger>
                            <AccordionContent>
-                              Es muy sencillo. Solo tienes que registrarte en
-                              nuestra plataforma, elegir el plan que mejor se
-                              adapte a tus necesidades y comenzar a añadir tus
-                              productos. Ofrecemos un período de prueba gratuito
-                              para que puedas explorar todas las
-                              funcionalidades.
+                              It&apos;s very simple. You just need to sign up on our
+                              platform, choose the plan that best suits your
+                              needs, and start adding your products. We offer a
+                              free trial period so you can explore all the
+                              features.
                            </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-4">
                            <AccordionTrigger>
-                              ¿Mis datos están seguros en Mi Little Shop?
+                              Are my data secure in Mi Little Shop?
                            </AccordionTrigger>
                            <AccordionContent>
-                              Absolutamente. La seguridad de tus datos es
-                              nuestra prioridad. Utilizamos tecnología de
-                              encriptación avanzada y seguimos las mejores
-                              prácticas de seguridad para proteger tu
-                              información.
+                              Absolutely. The security of your data is our
+                              priority. We use advanced encryption technology
+                              and follow best security practices to protect your
+                              information.
                            </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-5">
                            <AccordionTrigger>
-                              ¿Puedo cambiar de plan en cualquier momento?
+                              Can I change my plan at any time?
                            </AccordionTrigger>
                            <AccordionContent>
-                              Sí, puedes actualizar o cambiar tu plan en
-                              cualquier momento según las necesidades de tu
-                              negocio. El cambio se aplicará en tu próximo ciclo
-                              de facturación.
+                              Yes, you can upgrade or change your plan at any
+                              time according to your business needs. The change
+                              will be applied in your next billing cycle.
                            </AccordionContent>
                         </AccordionItem>
                      </Accordion>
@@ -712,11 +480,11 @@ export default function MyLittlePageShop() {
                   <div className="flex flex-col items-center justify-center space-y-4 text-center">
                      <div className="space-y-2">
                         <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
-                           Comienza a gestionar tu negocio hoy mismo
+                           Start managing your business today
                         </h2>
                         <p className="max-w-[900px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                           Únete a miles de emprendedores que ya confían en Mi
-                           Little Shop para hacer crecer sus negocios.
+                           Join thousands of entrepreneurs who already trust Mi
+                           Little Shop to grow their businesses.
                         </p>
                      </div>
                      <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -726,7 +494,7 @@ export default function MyLittlePageShop() {
                            className="bg-white text-emerald-600 hover:bg-gray-100"
                         >
                            <Link href="#">
-                              Comenzar ahora
+                              Start now
                               <ArrowRight className="ml-2 h-4 w-4" />
                            </Link>
                         </Button>
@@ -736,15 +504,15 @@ export default function MyLittlePageShop() {
                            variant="outline"
                            className="border-white text-white bg-emerald-600 hover:bg-emerald-700 hover:text-white"
                         >
-                           <Link href="#">Contactar ventas</Link>
+                           <Link href="#">Contact sales</Link>
                         </Button>
                      </div>
                   </div>
                </div>
             </section>
          </main>
-         <footer className="border-t py-6 md:py-8">
-            <div className="container flex flex-col items-center justify-center gap-4 md:flex-row md:gap-8">
+         <footer className="border-t py-6 md:py-8 w-full">
+            <div className="container flex flex-col items-center justify-center gap-4 md:flex-row md:gap-8 mx-auto">
                <div className="flex items-center gap-2">
                   <ShoppingBag className="h-6 w-6 text-emerald-600" />
                   <span className="text-lg font-bold">Mi Little Shop</span>
@@ -754,19 +522,19 @@ export default function MyLittlePageShop() {
                      href="#"
                      className="text-sm font-medium hover:underline underline-offset-4"
                   >
-                     Términos
+                     Terms
                   </Link>
                   <Link
                      href="#"
                      className="text-sm font-medium hover:underline underline-offset-4"
                   >
-                     Privacidad
+                     Privacy
                   </Link>
                   <Link
                      href="#"
                      className="text-sm font-medium hover:underline underline-offset-4"
                   >
-                     Contacto
+                     Contact
                   </Link>
                </nav>
                <div className="md:ml-auto flex gap-4">
@@ -774,7 +542,7 @@ export default function MyLittlePageShop() {
                      href="#"
                      className="text-sm font-medium hover:underline underline-offset-4"
                   >
-                     © 2025 Mi Little Shop. Todos los derechos reservados.
+                     © 2025 Mi Little Shop. All rights reserved.
                   </Link>
                </div>
             </div>

@@ -50,14 +50,14 @@ export default function UserDropdown({ name }: { name: string }) {
                </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className=" sm:w-40">
-               <DropdownMenuItem
+               {/* <DropdownMenuItem
                   className="cursor-pointer flex items-center gap-2 py-2"
                   onClick={() => handleRedirect()}
                >
                   <UserCircle className="!h-5 !w-5 " />
                   <span>Account</span>
                </DropdownMenuItem>
-               <DropdownMenuSeparator />
+               <DropdownMenuSeparator /> */}
                <DropdownMenuItem
                   className="cursor-pointer flex items-center gap-2 py-2 text-destructive"
                   onClick={() => handleOut()}

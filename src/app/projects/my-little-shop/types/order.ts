@@ -8,6 +8,7 @@ interface OrderItem{
    productId:number;
    quantity:number;
    product:Product;
+   earnings:number;
 
 }
 

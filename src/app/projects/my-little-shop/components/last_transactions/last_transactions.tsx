@@ -79,7 +79,9 @@ export default function LastTransactions({ orders }: { orders: Order[] }) {
             </Table>
          </div>
          <div className="flex mt-4 justify-end">
-            <Button className="">View all orders</Button>
+            <Button className=" bg-emerald-600 hover:bg-emerald-700">
+                           View all orders
+                        </Button>
          </div>
       </div>
    );

@@ -54,9 +54,9 @@
 
       --radius: 0.5rem;
 
-      --sidebar-background: 165, 94%, 21%;      /* Azul grisáceo oscuro */
+      --sidebar-background: 165, 94%, 21%; /*color del background del sidebar*/   
       
-      --sidebar-foreground: 240 5.3% 26.1%;
+      --sidebar-foreground: 0 0% 100%; /*color del texto del sidebar*/   
 
       --sidebar-primary: 240 5.9% 10%;
 

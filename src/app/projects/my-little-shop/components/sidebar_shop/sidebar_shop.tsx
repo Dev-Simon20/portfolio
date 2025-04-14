@@ -56,16 +56,16 @@ const items = [
       url: urlCustom("/finance"),
       icon: ChartNoAxesCombined,
    },
-   {
-      title: "Settings",
-      url: urlCustom("/settings"),
-      icon: Settings,
-   },
+   // {
+   //    title: "Settings",
+   //    url: urlCustom("/settings"),
+   //    icon: Settings,
+   // },
 ];
 
 export function SidebarShop() {
    return (
-      <Sidebar collapsible="icon" variant="inset" className="text-white">
+      <Sidebar collapsible="icon" variant="inset" className="">
          <SidebarHeader>
          <SidebarMenuButton
               size="lg"
@@ -84,17 +84,15 @@ export function SidebarShop() {
          </SidebarHeader>
          <SidebarContent>
             <SidebarGroup>
-               {/* <SidebarGroupLabel className="text-lg text-white">
-                  Application
-               </SidebarGroupLabel> */}
+
                <SidebarGroupContent>
                   <SidebarMenu>
                      {items.map((item) => (
-                        <SidebarMenuItem key={item.title}>
-                           <SidebarMenuButton asChild>
+                        <SidebarMenuItem key={item.title} >
+                           <SidebarMenuButton asChild size={'lg'} className="">
                               <a href={item.url}>
                                  <item.icon
-                                    style={{ width: "18px", height: "18px" }}
+                                    className="ml-1.5  !size-5"
                                  />
                                  <span className=" text-md font-light">
                                     {item.title}
