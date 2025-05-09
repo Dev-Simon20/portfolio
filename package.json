@@ -6,11 +6,7 @@
       "dev": "next dev",
       "build": "next build",
       "start": "next start",
-      "lint": "next lint",
-     "postinstall": "npx prisma generate --schema=prisma/shop/schema.prisma && [ ! -f prisma/generated/clientShop/libquery_engine-rhel-openssl-1.0.x.so.node ] || echo 'Binary already in place, skipping copy'"
-
- 
-
+      "lint": "next lint"
    },
    "dependencies": {
       "@auth/prisma-adapter": "^2.8.0",
