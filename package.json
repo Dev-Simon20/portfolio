@@ -7,7 +7,9 @@
       "build": "next build",
       "start": "next start",
       "lint": "next lint",
-      "postinstall": "npx prisma generate --schema=prisma/shop/schema.prisma"
+      "postinstall": "npx prisma generate --schema=prisma/shop/schema.prisma && cp prisma/generated/clientShop/libquery_engine-rhel-openssl-1.0.x.so.node prisma/generated/clientShop/"
+ 
+
    },
    "dependencies": {
       "@auth/prisma-adapter": "^2.8.0",
