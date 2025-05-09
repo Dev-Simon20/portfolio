@@ -7,7 +7,8 @@
       "build": "next build",
       "start": "next start",
       "lint": "next lint",
-      "postinstall": "npx prisma generate --schema=prisma/shop/schema.prisma && cp prisma/generated/clientShop/libquery_engine-rhel-openssl-1.0.x.so.node prisma/generated/clientShop/"
+     "postinstall": "npx prisma generate --schema=prisma/shop/schema.prisma && [ ! -f prisma/generated/clientShop/libquery_engine-rhel-openssl-1.0.x.so.node ] || echo 'Binary already in place, skipping copy'"
+
  
 
    },
