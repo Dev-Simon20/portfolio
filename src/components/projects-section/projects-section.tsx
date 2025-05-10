@@ -76,7 +76,7 @@ const projects = [
       thumbnail: mlDash.src,
       images: [],
       tags: ["Next.js", "TypeScript", "Prisna", "Tailwind CSS"],
-      liveUrl: "https://portfolio-o70u.onrender.com/projects/my-little-shop",
+      liveUrl: "https://devsimon20.netlify.app/projects/my-little-shop",
       repoUrl: "https://github.com/username/task-management-app",
    },
 ];
