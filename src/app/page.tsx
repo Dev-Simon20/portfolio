@@ -311,7 +311,7 @@ createSolution().then(result => {
                      <div className="mt-8">
                         <Link
                            href={
-                              "https://drive.google.com/file/d/1CtOiDMvajI39V5VQHVZi5K6BLTyI0J9w/view?usp=sharing"
+                              "https://docs.google.com/document/d/1R8-0kwVn2o4jOd52eoKUmAsXxFDrPH7z33j9DPL8JT0/edit?tab=t.0"
                            }
                            target="_blank"
                         >
